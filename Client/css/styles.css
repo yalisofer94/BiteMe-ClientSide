@@ -40,3 +40,9 @@ h1 {
         margin: 0;
         padding: 0;
       }
+
+      /* MAP TEST */
+      #map {
+          height: 500px;
+          
+      } 
