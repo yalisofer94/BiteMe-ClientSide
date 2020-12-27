@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header, main, footer, nav, aside, section, div  {
+    display: block;
+}
+
+body {
+    font-family: 'Verdana', 'Geneva', 'Tahoma', 'sans-serif';
+    background-color: aquamarine;
+}
+
+#wrapper {
+    width: 1000px;
+    margin: 0px auto;
+    justify-content: center;
+    text-align: center;
+}
+
+form, header {
+    margin-left: 7%;
+}
+
+h1 {
+    margin-bottom: 50px;
+}
