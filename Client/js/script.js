@@ -2,7 +2,7 @@ var map;
 
 function createMap () {
   var options = {
-    center: { lat: 43.654, lng: -79.383 },
+    center: { lat: 32.0853, lng: 34.7818 },
     zoom: 10
   };
 
