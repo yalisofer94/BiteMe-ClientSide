@@ -1,3 +1,5 @@
+//const { type } = require("os");
+
 $(document).ready(function () {
     getAllRestaurants();
     console.log("Hello");
@@ -10,21 +12,20 @@ function getAllRestaurants() {
     $.ajax({
         url: 'http://localhost:3000/api/restaurant',
         type: 'GET',
-        success: function(restaurants) {
+        success: function (restaurants) {
             recreateRestTable(restaurants);
         }
     });
 }
 
-function appendTableRow(id, name, address,style,price,rate)
-{
+function appendTableRow(id, name, address, style, price, rate) {
     let tableRow = "<tr><td>$id</td><td>$name</td><td>$address</td><td>$style</td><td>$price</td><td>$rate</td></tr>";
-    tableRow = tableRow.replace("$id",id);
-    tableRow = tableRow.replace("$name",name);
-    tableRow = tableRow.replace("$address",address);        
-    tableRow = tableRow.replace("$style",style);             
-    tableRow = tableRow.replace("$price",price);             
-    tableRow = tableRow.replace("$rate",rate);             
+    tableRow = tableRow.replace("$id", id);
+    tableRow = tableRow.replace("$name", name);
+    tableRow = tableRow.replace("$address", address);
+    tableRow = tableRow.replace("$style", style);
+    tableRow = tableRow.replace("$price", price);
+    tableRow = tableRow.replace("$rate", rate);
     $("#RestTable tbody").append(tableRow);
 }
 
@@ -35,36 +36,30 @@ function recreateRestTable(restaurants) {
     if (restaurantsLen) {
         $('table').append('<tbody></tbody>');
         for (let i = 0; i < restaurantsLen; i++) {
-            appendTableRow(restaurants[i].id, restaurants[i].name, restaurants[i].address, restaurants[i].style,restaurants[i].price,restaurants[i].rate)
+            appendTableRow(restaurants[i].id, restaurants[i].name, restaurants[i].address, restaurants[i].style, restaurants[i].price, restaurants[i].rate)
         }
-    } 
+    }
 }
 
 function searchListener() {
     $("#searchBtn").click(() => {
-        const id = $("#place").val();
-        // const userObj = {
-        //     id
-        // }
-        console.log(id);
-        getRestaurants(id);
-  
+        const restName = $("#place").val();
+        console.log(restName);
+        $.ajax({
+            url: `http://localhost:3000/api/restaurantAPI?restName=${restName}`,
+            type: 'GET',
+            success: function (rests) {
+                console.log(rests);
+                showMapData(rests);
+            }
+        })
     });
 
     function showMapData(restaurants) {
-        $("#checkMe").append(restaurants.candidates[0].geometry.location.lng);
-        $("#checkMe").append(restaurants.candidates[0].formatted_address);
-    }
+        console.log("wiwiwiwiw");
+        $("#checkMe").append(restaurants.lng);
+        $("#checkMe").append(restaurants.lat);
 
-    function getRestaurants(str) {
-        $.ajax({
-            url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${str}&inputtype=textquery&fields=formatted_address,name,rating,geometry&key=AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss`,
-            type: 'GET',
-            success: function(restaurants) {
-                console.log(restaurants);
-                showMapData(restaurants);
-            }
-        });
+        console.log("You have more then one option");
     }
-
 }
