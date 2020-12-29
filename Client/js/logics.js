@@ -1,6 +1,7 @@
 $(document).ready(function () {
     getAllRestaurants();
     console.log("Hello");
+    searchListener();
     //operationsListeners();
 });
 
@@ -39,9 +40,39 @@ function recreateRestTable(restaurants) {
     } 
 }
 
-function operationsListeners() {
-    $("#show-button").click(() => {
-        getAllRestaurants();
+// function operationsListeners() {
+//     $("#show-button").click(() => {
+//         getAllRestaurants();
+//     });
+
+// }
+
+function searchListener() {
+    $("#searchBtn").click(() => {
+        const id = $("#place").val();
+        // const userObj = {
+        //     id
+        // }
+        console.log(id);
+        getRestaurants(id);
+        //updateUserById(id, cleanUpdateData(userObj));
+  
     });
+
+    function showMapData(restaurants) {
+        $("#checkMe").append(restaurants.candidates[0].geometry.location.lng);
+        $("#checkMe").append(restaurants.candidates[0].formatted_address);
+    }
+
+    function getRestaurants(str) {
+        $.ajax({
+            url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${str}&inputtype=textquery&fields=formatted_address,name,rating,geometry&key=AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss`,
+            type: 'GET',
+            success: function(restaurants) {
+                console.log(restaurants);
+                showMapData(restaurants);
+            }
+        });
+    }
 
 }
