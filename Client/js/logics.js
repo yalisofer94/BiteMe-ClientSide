@@ -40,13 +40,6 @@ function recreateRestTable(restaurants) {
     } 
 }
 
-// function operationsListeners() {
-//     $("#show-button").click(() => {
-//         getAllRestaurants();
-//     });
-
-// }
-
 function searchListener() {
     $("#searchBtn").click(() => {
         const id = $("#place").val();
@@ -55,7 +48,6 @@ function searchListener() {
         // }
         console.log(id);
         getRestaurants(id);
-        //updateUserById(id, cleanUpdateData(userObj));
   
     });
 
