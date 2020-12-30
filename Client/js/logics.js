@@ -1,7 +1,3 @@
-//const { type } = require("os");
-
-
-
 $(document).ready(function () {
   getAllRestaurants();
   console.log("Hello");
@@ -57,7 +53,7 @@ function searchListener() {
   });
 
   function showMapData(restaurants) {
-
+    console.log(restaurants.candidates[0].name);
     $.post(`http://localhost:3000/api/restaurant`, {
       name: restaurants.candidates[0].name,
       address: restaurants.candidates[0].formatted_address,
