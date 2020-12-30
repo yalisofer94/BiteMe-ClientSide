@@ -1,8 +1,8 @@
+
 $(document).ready(function () {
   getAllRestaurants();
   console.log("Hello");
   searchListener();
-  //operationsListeners();
 });
 
 function getAllRestaurants() {
@@ -11,18 +11,38 @@ function getAllRestaurants() {
     type: 'GET',
     success: function (restaurants) {
       recreateRestTable(restaurants);
+      recreateChoosingOptions(restaurants);
     }
   });
 }
 
-function appendTableRow(id, name, address, style, price, rate) {
-  let tableRow = "<tr><td>$id</td><td>$name</td><td>$address</td><td>$style</td><td>$price</td><td>$rate</td></tr>";
+function recreateChoosingOptions(restaurants) {
+    $("#FormOptions #optionsRadio").empty();
+    const restaurantsLen = restaurants.length;
+    if (restaurantsLen) {
+        $('table').append('<tbody></tbody>');
+        for (let i = 0; i < restaurantsLen; i++) {
+          appendRadioButton(restaurants[i].id, restaurants[i].name, restaurants[i].address, restaurants[i].price, restaurants[i].rate, restaurants[i].open)
+        }
+    }
+}
+
+function appendRadioButton() {
+
+}
+
+function appendTableRow(id, name, address, price, rate, open) {
+  let tableRow = "<tr><td>$id</td><td>$name</td><td>$address</td><td>$price</td><td>$rate</td><td>$open</td><td></td></tr>";
   tableRow = tableRow.replace("$id", id);
   tableRow = tableRow.replace("$name", name);
   tableRow = tableRow.replace("$address", address);
-  tableRow = tableRow.replace("$style", style);
   tableRow = tableRow.replace("$price", price);
   tableRow = tableRow.replace("$rate", rate);
+  if(open) {
+    tableRow = tableRow.replace("$open", "open");
+  } else {
+    tableRow = tableRow.replace("$open", "close");
+  }
   $("#RestTable tbody").append(tableRow);
 }
 
@@ -33,7 +53,7 @@ function recreateRestTable(restaurants) {
   if (restaurantsLen) {
     $('table').append('<tbody></tbody>');
     for (let i = 0; i < restaurantsLen; i++) {
-      appendTableRow(restaurants[i].id, restaurants[i].name, restaurants[i].address, restaurants[i].style, restaurants[i].price, restaurants[i].rate)
+      appendTableRow(restaurants[i].id, restaurants[i].name, restaurants[i].address, restaurants[i].price, restaurants[i].rate, restaurants[i].open)
     }
   }
 }
@@ -41,33 +61,27 @@ function recreateRestTable(restaurants) {
 function searchListener() {
   $("#searchBtn").click(() => {
     const restName = $("#place").val();
-    console.log(restName);
+    console.log(`you are in the search listener func ${restName}`);
     $.ajax({
       url: `http://localhost:3000/api/restaurantAPI?restName=${restName}`,
       type: 'GET',
       success: function (rests) {
-        console.log(rests);
+        console.log("Hello");
+        console.log(rests.candidates[0].price_level);
         pushMapData(rests);
       }
     })
   });
 
-<<<<<<< HEAD
   function pushMapData(restaurants) {
-
-=======
-  function showMapData(restaurants) {
-    console.log(restaurants.candidates[0].name);
->>>>>>> c6414775916670540316b437e1b52c08ce41b902
     $.post(`http://localhost:3000/api/restaurant`, {
       name: restaurants.candidates[0].name,
       address: restaurants.candidates[0].formatted_address,
-      style: "",
-      price: "",
-      rate: restaurants.candidates[0].rating
+      price: restaurants.candidates[0].price_level,
+      rate: restaurants.candidates[0].rating,
+      open: restaurants.candidates[0].opening_hours.open_now
     })
-
-    console.log("You have more then one option");
+    location.reload();
   }
 }
 

@@ -26,6 +26,9 @@ form, header {
 h1 {
     margin-bottom: 50px;
 }
+#searchBtn{
+    margin-left: 0px;
+}
 
 <<<<<<< HEAD
 /* Always set the map height explicitly to define the size of the div
