@@ -1,7 +1,3 @@
-//const { type } = require("os");
-
-
-
 $(document).ready(function () {
   getAllRestaurants();
   console.log("Hello");
@@ -56,8 +52,13 @@ function searchListener() {
     })
   });
 
+<<<<<<< HEAD
   function pushMapData(restaurants) {
 
+=======
+  function showMapData(restaurants) {
+    console.log(restaurants.candidates[0].name);
+>>>>>>> c6414775916670540316b437e1b52c08ce41b902
     $.post(`http://localhost:3000/api/restaurant`, {
       name: restaurants.candidates[0].name,
       address: restaurants.candidates[0].formatted_address,
