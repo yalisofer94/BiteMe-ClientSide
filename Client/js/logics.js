@@ -51,12 +51,12 @@ function searchListener() {
       type: 'GET',
       success: function (rests) {
         console.log(rests);
-        showMapData(rests);
+        pushMapData(rests);
       }
     })
   });
 
-  function showMapData(restaurants) {
+  function pushMapData(restaurants) {
 
     $.post(`http://localhost:3000/api/restaurant`, {
       name: restaurants.candidates[0].name,
