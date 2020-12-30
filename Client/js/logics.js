@@ -57,54 +57,52 @@ function searchListener() {
   });
 
   function showMapData(restaurants) {
-    console.log("wiwiwiwiw");
-    $("#checkMe").append(restaurants.lng);
-    $("#checkMe").append(restaurants.lat);
+
+    $.post(`http://localhost:3000/api/restaurant`, {
+      name: restaurants.candidates[0].name,
+      address: restaurants.candidates[0].formatted_address,
+      style: "",
+      price: "",
+      rate: restaurants.candidates[0].rating
+    })
 
     console.log("You have more then one option");
   }
 }
 
-var map;
+let map;
 
 function createMap() {
-  var options = {
+  let options = {
     center: { lat: 32.0853, lng: 34.7818 },
     zoom: 10
   };
 
   map = new google.maps.Map(document.getElementById('map'), options);
 
-  var input = document.getElementById('place');
-  var searchBox = new google.maps.places.SearchBox(input);
+  let input = document.getElementById('place');
+  console.log(input);
+  let searchBox = new google.maps.places.SearchBox(input);
 
   map.addListener('bounds_changed', function () {
     searchBox.setBounds(map.getBounds());
   });
 
-  // var markers = [];
-  const marker = new google.maps.Marker({
-    // The below line is equivalent to writing:
-    // position: new google.maps.LatLng(-34.397, 150.644)
-    position: { lat: rests.location.lat, lng: rests.location.lng },
-    map: map,
-  });
+  let markers = [];
 
   searchBox.addListener('places_changed', function () {
-    var places = searchBox.getPlaces();
+    let places = searchBox.getPlaces();
 
     if (places.length == 0)
       return;
 
-    markers.forEach(function (m) { m.setMap(null); });
+    markers.forEach(function (input) { input.setMap(null); });
     markers = [];
 
-    var bounds = new google.maps.LatLngBounds();
+    let bounds = new google.maps.LatLngBounds();
     places.forEach(function (p) {
       if (!p.geometry)
         return;
-
-     
 
       markers.push(new google.maps.Marker({
         map: map,
