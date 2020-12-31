@@ -80,7 +80,7 @@ function searchListener() {
       price: restaurants.candidates[0].price_level,
       rate: restaurants.candidates[0].rating,
       open: restaurants.candidates[0].opening_hours.open_now
-    })
+    });
     location.reload();
   }
 }
@@ -90,7 +90,7 @@ let map;
 function createMap() {
   let options = {
     center: { lat: 32.0853, lng: 34.7818 },
-    zoom: 10
+    zoom: 13
   };
 
   map = new google.maps.Map(document.getElementById('map'), options);
