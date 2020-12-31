@@ -9,7 +9,7 @@ header, main, footer, nav, aside, section, div  {
 
 body {
     font-family: 'Verdana', 'Geneva', 'Tahoma', 'sans-serif';
-    background-color: aquamarine;
+    background-image: url('./../images/background3.jpg');
 }
 
 #wrapper {
@@ -26,10 +26,26 @@ form, header {
 h1 {
     margin-bottom: 50px;
 }
-#searchBtn{
-    margin-left: 0px;
-}
 
+#header {
+    /* background-image: url('./../images/background4.png'); */
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    left: 40%;
+}
+#restSearch{
+    display: flex;
+}
+#searchBtn{
+    margin-left: 128px;
+}
+#place{
+    width: 872px;
+    margin-left: 113px;
+}
+#getResultBtn{
+    margin-left: 24px;
+}
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
        #map {

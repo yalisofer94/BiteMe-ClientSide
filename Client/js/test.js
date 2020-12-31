@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
     searchListener();
-    console.log("You are at the begining");
   });
   
   
@@ -11,7 +10,6 @@ $(document).ready(function () {
         // const userObj = {
         //     id
         // }
-        console.log(id);
         getRestaurants(id);
         //updateUserById(id, cleanUpdateData(userObj));
   

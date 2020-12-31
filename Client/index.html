@@ -6,11 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
     <link rel="icon" href="./images/biteMe_favicon.png">
     <title>BiteMe</title>
 </head>
 <body>
     <div id="wrapper">
+      <div class="row">
+          <h1 id="header">BiteMe!</h1>
+      </div>
         <div class="container">
             <table id="RestTable" class="table">
               <thead>
@@ -18,7 +22,6 @@
                   <th>id</th>
                   <th>Name</th>
                   <th>Address</th>
-                  <th>Price</th>
                   <th>Rate</th>
                   <th>Open now</th>
                 </tr>
@@ -28,19 +31,10 @@
               </tbody>
             </table>
             <div class="form-group row" id="FormOptions">
-              <label class="col-sm-4">Enter the restaurant ID you want to choose:</label>
-              <div class="col-sm-4" id="optionsRadio">
-                  <label class="radio-inline"><input id="radio1"
-                          type="radio" name="ans1" value="0" checked>1</label>
-                  <label class="radio-inline"><input id="radio2"
-                          type="radio" name="ans1" value="1">2</label>
-                  <label class="radio-inline"><input id="radio3"
-                      type="radio" name="ans1" value="2">3</label>
-              </div>
               <div class="form-group row">
-                <div class="col-sm-10">
-                    <button id="updateBtn" type="button" class="btn
-                        btn-primary">Add</button>
+                <div class="col-md-12">
+                    <button id="getResultBtn" type="button" class="btn
+                        btn-primary">Get result</button>
                 </div>
             </div>
           </div>
@@ -48,19 +42,22 @@
         </div>
 
     </div>
-    <form>
-      <input type="text" class="form-control" id="place" placeholder="Enter restaurant..."  />
-          <div class="col-sm-10">
+    <form id=restSearch>
+          <div class="col-sm-1">
             <button id="searchBtn" type="button" class="btn btn-primary">Search</button>
           </div>
+          <input type="text" class="form-control" id="place" placeholder="Enter restaurant..."  />
       </form>
       <div id="checkMe">
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2"></div>
+      <div class="col-8">
           <div id="map"></div>
       </div>
+      <div class="col-2"></div>
+
   </div>
     </div>
 </body>
