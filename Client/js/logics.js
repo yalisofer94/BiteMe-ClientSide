@@ -44,7 +44,6 @@ function recreateRestTable(restaurants) {
 function searchListener() {
   $("#searchBtn").click(() => {
     const restName = $("#place").val();
-    
     // console.log(`you are in the search listener func ${restName}`);
     $.ajax({
       url: `https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${restName}`,
@@ -69,15 +68,15 @@ function searchListener() {
 
 function resultListener() {
   $("#getResultBtn").click(() => {
-    var txt;
-    var pass = prompt("Please enter password:", "***");
+    let txt;
+    let pass = prompt("Please enter password:", "***");
     if (pass == null || pass == "") {
       txt = "User cancelled the prompt.";
     } else {
-      if(pass == "12345"){
+      if (pass == "12345") {
         alert("Welcome!");
         checkMaxRests();        
-      }else{
+      } else {
         alert("You entered the wrong password!")
       }
     }
