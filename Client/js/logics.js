@@ -6,24 +6,12 @@ $(document).ready(function () {
 
 function getAllRestaurants() {
   $.ajax({
-    url: 'http://localhost:3000/api/restaurant',
+    url: 'https://bite-me-app1.herokuapp.com/api/restaurant',
     type: 'GET',
     success: function (restaurants) {
       recreateRestTable(restaurants);
-      recreateChoosingOptions(restaurants);
     }
   });
-}
-
-function recreateChoosingOptions(restaurants) {
-  $("#FormOptions #optionsRadio").empty();
-  const restaurantsLen = restaurants.length;
-  if (restaurantsLen) {
-    $('table').append('<tbody></tbody>');
-    for (let i = 0; i < restaurantsLen; i++) {
-      appendRadioButton(restaurants[i].id, restaurants[i].name, restaurants[i].address, restaurants[i].price, restaurants[i].rate, restaurants[i].open)
-    }
-  }
 }
 
 function appendTableRow(id, name, address, price, rate, open) {
@@ -59,7 +47,7 @@ function searchListener() {
     
     // console.log(`you are in the search listener func ${restName}`);
     $.ajax({
-      url: `http://localhost:3000/api/restaurantAPI?restName=${restName}`,
+      url: `https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${restName}`,
       type: 'GET',
       success: function (rests) {
         pushMapData(rests);
@@ -68,7 +56,7 @@ function searchListener() {
   });
 
   function pushMapData(restaurants) {
-    $.post(`http://localhost:3000/api/restaurant`, {
+    $.post(`https://bite-me-app1.herokuapp.com/api/restaurant`, {
       name: restaurants.candidates[0].name,
       address: restaurants.candidates[0].formatted_address,
       price: restaurants.candidates[0].price_level,
@@ -98,7 +86,7 @@ function resultListener() {
 
 function checkMaxRests() {
   $.ajax({
-    url: `http://localhost:3000/api/maxCount`,
+    url: `https://bite-me-app1.herokuapp.com/api/maxCount`,
     type: 'GET',
     success: function (rests) {
       if (rests[0].count == rests[1].count) {
@@ -115,7 +103,7 @@ function checkMaxRests() {
 
 function sendMail(name = "") {
   $.ajax({
-    url: `http://localhost:3000/api/send?name=${name}`,
+    url: `https://bite-me-app1.herokuapp.com/api/send?name=${name}`,
     type: 'POST',
     success: function (rest) {}
   })
