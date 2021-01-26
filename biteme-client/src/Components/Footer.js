@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 class Footer extends Component {
   render() {
     return (
-      <>
+      <div >
         <Grid container className="bg-footer">
             <Grid item md={2}></Grid>
               <Grid item md={3}>
@@ -71,7 +71,7 @@ class Footer extends Component {
                 </Grid>
                 <Grid item md={2}></Grid>
           </Grid>
-      </>
+      </div>
     );
   }
 }

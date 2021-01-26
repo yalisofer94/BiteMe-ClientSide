@@ -1,11 +1,12 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import LogIn from '../Components/LogIn';
-import Footer from '../Components/Footer';
+import Login from './../Components/LogIn';
+import Home from './../Components/Home';
 const ReactRouter = () => {
     return(
         <>
-            <Route exact path='/' component={Footer}/>
+            <Route exact path='/' component={Home}/>
+            <Route path='/login' component={Login}/>
         </>
     )
 }

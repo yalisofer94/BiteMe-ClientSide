@@ -7,9 +7,17 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 30px;
+}
+
+h1 {
+  font-size: 80px;
+  color: #001f3f;
+}
+
+h3 {
+  font-size: 30px;
   color: #ffffff;
 }
 
@@ -21,6 +29,22 @@ a {
 a:hover {
   text-decoration: none;
 }
+
+/* Home */
+.home-content1{
+  background-image: url('./../Images/background3\ copy.jpg');
+  height: 500px;
+}
+
+#hm-cont1-main {
+  margin: 8%;
+  padding-left: 15%;
+}
+
+#search-input {
+  padding-left: 16%;
+}
+
 
 /* Footer */
 .bg-footer {
