@@ -1,12 +1,28 @@
-import React ,{ Component} from 'react';
+import React ,{ useState } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Axios from "axios";
 import "./App.css";
 
-class Login extends Component {
-    render() {
+function Login() {
+
+    const [loginUsername, setLoginUsername] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+
+    const login = () => {
+        Axios({
+          method: "POST",
+          data: {
+            username: loginUsername,
+            password: loginPassword,
+          },
+          withCredentials: true,
+          url: "http://localhost:4000/api/user/login",
+        }).then((res) => console.log(res));
+      };
+
         return(
             <div>
                 <Logo />
@@ -16,16 +32,12 @@ class Login extends Component {
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
                             <form style={{ display: 'inline-block', marginLeft: 'auto',marginRight: 'auto',textAlign: 'left'}}>
                                 <div style={{marginBottom:'5%', width:'300px'}}>
-                                    {/* <label style={{paddingRight:'14%', fontSize:'20px', fontWeight:'bold'}}>Email</label>
-                                    <input type="email" className="forms" id="userLoginEmail" placeholder="Email" style={{borderLeft:'1px solid'}}onChange={(e) => this.setState({userLoginEmail: e.target.value})} /> */}
-                                    <TextField id="outlined-basic" label="Email" id="userLoginEmail" variant="outlined" />
+                                    <TextField id="outlined-basic" type="text" label="UserName" id="userLoginEmail" variant="outlined" onChange={(e) => setLoginUsername(e.target.value)}/>
                                 </div>
                                 <div style={{marginBottom:'5%'}}>
-                                    {/* <label style={{fontSize:'20px', fontWeight:'bold'}}>Password</label>
-                                    <input type="password" className="forms" id="userLoginPassword" placeholder="Password" style={{borderLeft:'1px solid'}} onChange={(e) => this.setState({userLoginPassword: e.target.value})} /> */}
-                                    <TextField id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined"/>
+                                    <TextField id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined" onChange={(e) => setLoginPassword(e.target.value)}/>
                                 </div>
-                                <button type="submit" className="btn" style={{marginBottom:'5%'}} onClick={this.handleLoginNowBtn}><b>Login Now</b></button>
+                                <button type="submit" className="btn" style={{marginBottom:'5%'}} onClick={login}><b>Login Now</b></button>
                             </form>
                             </div>
                         </Grid>
@@ -33,7 +45,7 @@ class Login extends Component {
                 <Footer />
             </div>    
         )
-    }
 }
+
 
  export default Login;
