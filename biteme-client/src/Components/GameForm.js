@@ -1,20 +1,25 @@
-import React ,{ Component} from 'react';
+import React, { Component } from "react";
 import Footer from './Footer';
-import Logo from './Logo';
+import MapContainer from './Map'
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Logo from './Logo'
 import "./App.css";
 
-class Login extends Component {
-    render() {
-        return(
-            <div>
+class GameForm extends Component{
+    constructor(props) {
+        super(props);
+    }
+        render() {
+            return(
+                <div>
                 <Logo />
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                            <h2>Login Your Account</h2>
+                            <h1>Add New Game</h1>
                             <form>
                                 <div>
-                                    <label htmlFor="userLoginEmail">Email</label>
+                                    <label htmlFor="userLoginEmail">Question 1: </label>
                                     <input type="email" className="forms" id="userLoginEmail" placeholder="Email" onChange={(e) => this.setState({userLoginEmail: e.target.value})} />
                                 </div>
                                 <div>
@@ -27,9 +32,9 @@ class Login extends Component {
                         </Grid>
                     </div>
                 <Footer />
-            </div>    
-        )
+            </div>  
+            )
     }
 }
 
- export default Login;
+export default GameForm;

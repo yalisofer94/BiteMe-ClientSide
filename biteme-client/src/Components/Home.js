@@ -10,29 +10,27 @@ class Home extends Component{
     constructor(props) {
         super(props);
     }
- 
         render() {
             return(
                 <>
                 <Logo/>
-                <div className="home-content1">
-                <Grid container >
+                <div className="home-content">
+                <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                 <Grid item xl></Grid>
-                <Grid item xl={8} id="hm-cont1-main">
-                  <h1><strong>FULFILL YOUR DESIRE</strong></h1>
-                    <Grid container id="search-input">
-                      <form> 
-                        <input type="text" style={{display:'block', backgroundColor:'white', width: '450px', height:'55px'}} placeholder="Enter restaurant..." />
-                        <Button variant="contained" color="primary" style={{display:'block',width:'150px', height:'60px', marginLeft:'145px', marginTop:'3%'}} onClick={this.handleSearchBar}><b>Search</b></Button>
+                <Grid item xl={8}>
+                  <h1 style={{marginTop: '5%'}}><strong>FULFILL YOUR DESIRE</strong></h1>
+                    <Grid>
+                      <form style={{justifyContent: 'center', textAlign: 'center'}}> 
+                        <input type="text" style={{backgroundColor:'white', width: '40%', height: '34px', marginTop: '3%'}} placeholder="Enter restaurant..." />
+                        <Button variant="contained" color="primary" style={{width:'10%', height:'40px', marginLeft: '0.8%'}}><b>Search</b></Button>
                       </form>
                     </Grid>
                 </Grid>
-                <Grid item xl></Grid>
               </Grid>
               </div>
             <MapContainer/>
-                <Grid container style={{backgroundImage: `url('./../Images/background3\ copy.jpg')`, paddingTop:'15px', paddingLeft:'35%'}}>
-                <h1>LET THE FUN BEGIN</h1>
+                <Grid style={{backgroundImage: `url('./../Images/background3\ copy.jpg')`, paddingTop:'0.3%'}}>
+                <h1 style={{justifyContent: 'center', textAlign: 'center'}}>LET THE FUN BEGIN</h1>
                 </Grid>
             <Footer/>
             </>

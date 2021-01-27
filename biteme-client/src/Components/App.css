@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 80px;
+  font-size: 70px;
   color: #001f3f;
 }
 
@@ -31,20 +31,36 @@ a:hover {
 }
 
 /* Home */
-.home-content1{
+.home-content{
   background-image: url('./../Images/background3\ copy.jpg');
   height: 500px;
 }
 
-#hm-cont1-main {
-  margin: 8%;
-  padding-left: 15%;
+/*login*/
+.btn{
+  border-color: #d86024;
+  color: #ffffff;
+  background-color: #d86024;
 }
 
-#search-input {
-  padding-left: 16%;
+.btn:hover {
+  background-color: #ffffff;
+  color: #d86024;
+  border-color: #d86024;
 }
 
+.forms{
+  color: #9194a0;
+  border-left: none;
+}
+.forms::placeholder{
+  color: #9194a0;
+}
+
+.forms:focus {
+  color: #9194a0;
+  background-color: #ffffff;
+}
 
 /* Footer */
 .bg-footer {
