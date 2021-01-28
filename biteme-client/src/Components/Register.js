@@ -14,6 +14,9 @@ function Register (props) {
     const [registerPassword, setRegisterPassword] = useState("");
 
     const register = () => {
+        if(registerEmail === '' || registerPassword === '' || registerUsername === ''){
+            alert("Please fill all fields");
+        } else {
         Axios({
             method: "POST",
             data: {
@@ -24,10 +27,14 @@ function Register (props) {
             withCredentials: true,
             url: "http://localhost:4000/api/user/register",
         }).then((res) => {
-            if(res.status === 200) {            
+            if(res.data.msg === "User Already Exists"){
+                window.location = '/login';
+            }
+            else{            
                 window.location = '/';
             }
-    });
+        });
+    }
 };       
 
     return(
