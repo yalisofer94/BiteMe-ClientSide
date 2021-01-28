@@ -20,7 +20,11 @@ function Login() {
           },
           withCredentials: true,
           url: "http://localhost:4000/api/user/login",
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            if(res.status === 200) {
+                window.location = 'http://localhost:3000/';
+            }
+        });
       };
 
         return(
@@ -39,6 +43,9 @@ function Login() {
                                 </div>
                                 <button type="submit" className="btn" style={{marginBottom:'5%'}} onClick={login}><b>Login Now</b></button>
                             </form>
+                            </div>
+                            <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
+                                <p>Want to <a style={{color:'black', fontSize:'15px', paddingLeft:'-1%',paddingRight:'4%' ,fontWeight:'bold'}}href='http://localhost:3000/register'>Register?</a></p>
                             </div>
                         </Grid>
                     </div>

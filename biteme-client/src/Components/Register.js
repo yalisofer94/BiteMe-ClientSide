@@ -8,7 +8,7 @@ import "./App.css";
 import {Button} from '@material-ui/core';
 
 
-function Register () {
+function Register (props) {
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
@@ -23,15 +23,19 @@ function Register () {
             },
             withCredentials: true,
             url: "http://localhost:4000/api/user/register",
-        }).then((res) => console.log(res));
-        };       
+        }).then((res) => {
+            if(res.status === 200) {            
+                window.location = '/';
+            }
+    });
+};       
 
     return(
             <div>
                 <Logo />
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                            <h1>Sing Up</h1>
+                            <h1 style={{marginBottom:'2%'}}>Sing Up</h1>
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
                             <form style={{ display: 'inline-block', marginLeft: 'auto',marginRight: 'auto',textAlign: 'left'}}>
                                 <div style={{marginBottom:'5%', width:'300px'}}>
@@ -45,6 +49,9 @@ function Register () {
                                 </div>
                                 <Button onClick={register} variant="contained" color="primary" style={{marginBottom:'5%'}} ><b>Register Now</b></Button>
                             </form>
+                            </div>
+                            <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
+                                <p>Back to <a style={{color:'black', fontSize:'15px', paddingRight:'4%', fontWeight:'bold'}}href='http://localhost:3000/login'>Login</a></p>
                             </div>
                         </Grid>
                     </div>
