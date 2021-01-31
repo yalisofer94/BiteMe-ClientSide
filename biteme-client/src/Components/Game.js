@@ -66,6 +66,8 @@ export default function Game() {
     };
 
     return(
+                <>
+                <Logo/>
                 <div className='app'>
                   {loading ? <h2>Loading</h2>:
                   <div>
@@ -90,6 +92,8 @@ export default function Game() {
                     )}</div>
                   }
                 </div>
+                <Footer/>
+                </>
             );
 //     return (
 //         <div>

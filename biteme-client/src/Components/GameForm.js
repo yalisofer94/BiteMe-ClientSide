@@ -68,7 +68,7 @@ const GameForm = () => {
     const [buttonValue5, setbuttonValue5] = useState('');
 
     async function chekcRadioButtons(e) {
-        console.log(buttonValue1, typeof(buttonValue2));
+    
         setChoose11(buttonValue1 === "A");
         setChoose12(buttonValue1 === "B");
         setChoose13(buttonValue1 === "C");
@@ -89,13 +89,12 @@ const GameForm = () => {
         setChoose52(buttonValue5 === "B");
         setChoose53(buttonValue5 === "C");
         setChoose54(buttonValue5 === "D");
-        sendForm(e);
 
-    }
+    };
 
 
-    const sendForm = (e) => {
-        
+    async function sendForm (e) {
+        await chekcRadioButtons();
         
         const game = [{
             question: question1,
@@ -207,7 +206,7 @@ const GameForm = () => {
             url: "http://localhost:4000/api/game",
           }).then((res) => {
               if(res.status === 200) {
-                  //window.location = 'http://localhost:3000/';
+                  window.location = 'http://localhost:3000/';
               }
           });
     }
@@ -340,7 +339,7 @@ const GameForm = () => {
                                     <FormControlLabel value="D" control={<Radio />} label="D" />
                                 </RadioGroup>
                                 </FormControl>
-                                <Button variant="contained" color="primary" onClick={chekcRadioButtons} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
+                                <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
                             </form>
                         </Grid>
                 <Footer />
