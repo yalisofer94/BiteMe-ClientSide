@@ -61,12 +61,14 @@ const GameForm = () => {
     const [choose54, setChoose54] = useState(false);
 
 
-    const [buttonValue1, setbuttonValue1] = useState(false);
-    const [buttonValue2, setbuttonValue2] = useState(false);
-    const [buttonValue3, setbuttonValue3] = useState(false);
-    const [buttonValue4, setbuttonValue4] = useState(false);
-    const [buttonValue5, setbuttonValue5] = useState(false);
-    const sendForm = (e) => {
+    const [buttonValue1, setbuttonValue1] = useState('');
+    const [buttonValue2, setbuttonValue2] = useState('');
+    const [buttonValue3, setbuttonValue3] = useState('');
+    const [buttonValue4, setbuttonValue4] = useState('');
+    const [buttonValue5, setbuttonValue5] = useState('');
+
+    async function chekcRadioButtons(e) {
+        console.log(buttonValue1, typeof(buttonValue2));
         setChoose11(buttonValue1 === "A");
         setChoose12(buttonValue1 === "B");
         setChoose13(buttonValue1 === "C");
@@ -87,103 +89,111 @@ const GameForm = () => {
         setChoose52(buttonValue5 === "B");
         setChoose53(buttonValue5 === "C");
         setChoose54(buttonValue5 === "D");
+        sendForm(e);
+
+    }
+
+
+    const sendForm = (e) => {
+        
+        
         const game = [{
-            question1: question1,
+            question: question1,
             options:[
             {
-                answer1: answer11,
+                answer: answer11,
                 isCorrect: choose11
             },
             {
-                answer2: answer12,
+                answer: answer12,
                 isCorrect: choose12
             },
             {
-                answer3: answer13,
+                answer: answer13,
                 isCorrect: choose13
             },
             {
-                answer4: answer14,
+                answer: answer14,
                 isCorrect: choose14
             }]
         },
         {
-            question2: question2,
+            question: question2,
             options:[
             {
-                answer1: answer21,
+                answer: answer21,
                 isCorrect: choose21
             },
             {
-                answer2: answer22,
+                answer: answer22,
                 isCorrect: choose22
             },
             {
-                answer3: answer23,
+                answer: answer23,
                 isCorrect: choose23
             },
             {
-                answer4: answer24,
+                answer: answer24,
                 isCorrect: choose24
             }],
         },
         {
-            question3: question3,
+            question: question3,
             options:[
             {
-                answer1: answer31,
+                answer: answer31,
                 isCorrect: choose31
             },
             {
-                answer2: answer32,
+                answer: answer32,
                 isCorrect: choose32
             },
             {
-                answer3: answer33,
+                answer: answer33,
                 isCorrect: choose33
             },
             {
-                answer4: answer34,
+                answer: answer34,
                 isCorrect: choose34
             }],
         },
         {
-            question4: question4,
+            question: question4,
             options:[
             {
-                answer1: answer41,
+                answer: answer41,
                 isCorrect: choose41
             },
             {
-                answer2: answer42,
+                answer: answer42,
                 isCorrect: choose42
             },
             {
-                answer3: answer43,
+                answer: answer43,
                 isCorrect: choose43
             },
             {
-                answer4: answer44,
+                answer: answer44,
                 isCorrect: choose44
             }],
         },
         {
-            question5: question5,
+            question: question5,
             options:[
             {
-                answer1: answer51,
+                answer: answer51,
                 isCorrect: choose51
             },
             {
-                answer2: answer52,
+                answer: answer52,
                 isCorrect: choose52
             },
             {
-                answer3: answer53,
+                answer: answer53,
                 isCorrect: choose53
             },
             {
-                answer4: answer54,
+                answer: answer54,
                 isCorrect: choose54
             }]
         }]
@@ -197,7 +207,7 @@ const GameForm = () => {
             url: "http://localhost:4000/api/game",
           }).then((res) => {
               if(res.status === 200) {
-                  window.location = 'http://localhost:3000/';
+                  //window.location = 'http://localhost:3000/';
               }
           });
     }
@@ -211,6 +221,7 @@ const GameForm = () => {
 }
             return(
                 <>
+
                 <Logo />
                     <div className="home-content" >
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column">
@@ -253,7 +264,7 @@ const GameForm = () => {
                                 </div>
                                 <FormControl component="fieldset">
                                 <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question1" value={buttonValue2} onChange={(e) => setbuttonValue2(e.target.value)} row>
+                                <RadioGroup aria-label="gender" name="question2" value={buttonValue2} onChange={(e) => setbuttonValue2(e.target.value)} row>
                                     <FormControlLabel value="A" control={<Radio />} label="A" />
                                     <FormControlLabel value="B" control={<Radio />} label="B" />
                                     <FormControlLabel value="C" control={<Radio />} label="C" />
@@ -276,7 +287,7 @@ const GameForm = () => {
                                 </div>
                                 <FormControl component="fieldset">
                                 <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question1" value={buttonValue3} onChange={(e) => setbuttonValue3(e.target.value)} row>
+                                <RadioGroup aria-label="gender" name="question3" value={buttonValue3} onChange={(e) => setbuttonValue3(e.target.value)} row>
                                     <FormControlLabel value="A" control={<Radio />}  label="A" />
                                     <FormControlLabel value="B" control={<Radio />}  label="B" />
                                     <FormControlLabel value="C" control={<Radio />}  label="C" />
@@ -299,7 +310,7 @@ const GameForm = () => {
                                 </div>
                                 <FormControl component="fieldset">
                                 <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question1" value={buttonValue4} onChange={(e) => setbuttonValue4(e.target.value)} row>
+                                <RadioGroup aria-label="gender" name="question4" value={buttonValue4} onChange={(e) => setbuttonValue4(e.target.value)} row>
                                     <FormControlLabel value="A" control={<Radio />}  label="A" />
                                     <FormControlLabel value="B" control={<Radio />}  label="B" />
                                     <FormControlLabel value="C" control={<Radio />}  label="C" />
@@ -322,14 +333,14 @@ const GameForm = () => {
                                 </div>
                                 <FormControl component="fieldset">
                                 <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question1" value={buttonValue5} onChange={(e) => setbuttonValue5(e.target.value)} row>
+                                <RadioGroup aria-label="gender" name="question5" value={buttonValue5} onChange={(e) => setbuttonValue5(e.target.value)} row>
                                     <FormControlLabel value="A" control={<Radio />} label="A" />
                                     <FormControlLabel value="B" control={<Radio />} label="B" />
                                     <FormControlLabel value="C" control={<Radio />} label="C" />
                                     <FormControlLabel value="D" control={<Radio />} label="D" />
                                 </RadioGroup>
                                 </FormControl>
-                                <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
+                                <Button variant="contained" color="primary" onClick={chekcRadioButtons} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
                             </form>
                         </Grid>
                 <Footer />
