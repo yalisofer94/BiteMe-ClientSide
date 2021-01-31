@@ -37,60 +37,20 @@ export default function Game() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
-    const [data, setData] = useState({});
-    
-    const questions = [];
+  const [datas, setDatas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchData() {
-          const res = await fetch(`http://localhost:4000/api/game/${1}`);
-          res
-            .json()
-            .then(res => setData(res))
-            .catch(err => console.log(err));
-        }
-     
-        fetchData();
-      });
-
-    // fetch(`http://localhost:4000/api/game/${1}`)
-    //     .then(res => res.json())
-    //     .then(data => console.log(data.game[1].options[1].answer));
-
-
-    
-    // useEffect(() => {
-	// 	console.log('mounted');
-	// 	let data = [];
-	// 	data = fetch(`http://localhost:4000/api/game/${1}`)
-    //             .then(data.map(item => console.log(item)));
-	//   }, [])
-
-	//   const getData = async () => {
-	// 	const users = await Axios.get(`http://localhost:4000/api/game/${1}`);
-	// 	console.log(users);
-	// 	setData(users.game);
-	// 	console.log(data)
-	//    };
-	//    useEffect(() => {
-	// 	getData();
-	//    }, []);
-
-
-    ////////////////////////////////
-    // Axios({
-    //         method: "GET",
-    //         withCredentials: true,
-    //         url: `http://localhost:4000/api/game/${1}`,
-    //       }).then((res) => {
-    //           console.log(res.data.game);
-    //           if(res.status === 200) {
-    //             res.data.game.map(item => console.log(item)); /*setData(data => [...data, item])*/
-    //           }
-    //           console.log(data);
-    //       });
     ///////////////////////////////
-
+  useEffect(() => {
+    async function callApi() {
+      const res = await Axios.get(`http://localhost:4000/api/game/${1}`);
+      const games = res?.data?.game;
+      setDatas(games);
+      console.log("this is ", datas[0]);
+      setLoading(false);
+    }
+    callApi();
+  }, []);
     
 	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
@@ -98,47 +58,47 @@ export default function Game() {
 		}
 
 		const nextQuestion = currentQuestion + 1;
-		if (nextQuestion < questions.length) {
+		if (nextQuestion < datas.length) {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
 		}
     };
 
-
-    const qs = JSON.stringify(data["game"]);
-
-
-    // return(
-    //     data.map((questions) => {
-    //         return (
-    //             <div className='app'>
-    //                 {showScore ? (
-    //                     <div className='score-section'>
-    //                         You scored {score} out of {questions.length}
-    //                     </div>
-    //                 ) : (
-    //                     <>
-    //                         <div className='question-section'>
-    //                             <div className='question-count'>
-    //                                 <span>Question {currentQuestion + 1}</span>/{questions.length}
-    //                             </div>
-    //                             <div className='question-text'>{questions[currentQuestion].question}</div>
-    //                         </div>
-    //                         <div className='answer-section'>
-    //                             {questions[currentQuestion].options.map((option) => (
-    //                                 <button onClick={() => handleAnswerOptionClick(option.isCorrect)}>{option.answer}</button>
-    //                             ))}
-    //                         </div>
-    //                     </>
-    //                 )}
-    //             </div>
-    //         );
-    //     })
-    // )
-    return (
-        <div>
-          {qs}
-        </div>
-      );
+    return(
+                <div className='app'>
+                  {loading ? <h2>Loading</h2>:
+                  <div>
+                    {showScore ? (
+                        <div className='score-section'>
+                            You scored {score} out of {datas.length}
+                        </div>
+                    ) : (
+                        <>
+                            <div className='question-section'>
+                                <div className='question-count'>
+                                    <span>Question {currentQuestion + 1}</span>/{datas.length}
+                                </div>
+                                <div className='question-text'>{datas[currentQuestion].question}</div>
+                            </div>
+                            <div className='answer-section'>
+                                {datas[currentQuestion].options.map((option) => (
+                                    <button onClick={() => handleAnswerOptionClick(option.isCorrect)}>{option.answer}</button>
+                                ))}
+                            </div>
+                        </>
+                    )}</div>
+                  }
+                </div>
+            );
+//     return (
+//         <div>
+//           {loading ?
+//           <h1>Loading</h1> :
+//           <p>
+//           {"The Question is " + (datas[0].question)}
+//           </p>
+// }
+//         </div>
+//       );
 }
