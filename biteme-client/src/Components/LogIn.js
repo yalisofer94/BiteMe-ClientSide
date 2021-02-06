@@ -23,6 +23,7 @@ function Login() {
           withCredentials: true,
           url: "http://localhost:4000/api/user/login",
         }).then((res) => {
+            console.log(res);
             if(res.status === 200) {
                 window.location = '/home';
             }
@@ -40,6 +41,7 @@ function Login() {
           }
         })
         const data = await res.json()
+        console.log("hahah", data);
         // store returned user somehow
       }
 
