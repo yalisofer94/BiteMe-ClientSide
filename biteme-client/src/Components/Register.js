@@ -3,7 +3,7 @@ import Footer from './Footer';
 import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Axios from 'axios'
+import Axios from 'axios';
 import "./App.css";
 import {Button} from '@material-ui/core';
 
@@ -28,7 +28,7 @@ function Register (props) {
             url: "http://localhost:4000/api/user/register",
         }).then((res) => {
             if(res.data.msg === "User Already Exists"){
-                window.location = '/login';
+                window.location = '/';
             }
             else{            
                 window.location = '/';
@@ -58,7 +58,7 @@ function Register (props) {
                             </form>
                             </div>
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                                <p>Back to <a style={{color:'black', fontSize:'15px', paddingRight:'4%', fontWeight:'bold'}}href='http://localhost:3000/login'>Login</a></p>
+                                <p>Back to <a style={{color:'black', fontSize:'15px', paddingRight:'4%', fontWeight:'bold'}} href='/'>Login</a></p>
                             </div>
                         </Grid>
                     </div>

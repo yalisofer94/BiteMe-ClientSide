@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from '../Images/logo.png'
+import logo from '../Images/logo.png';
 import "./App.css";
 
 class Logo extends Component {
@@ -7,10 +7,10 @@ class Logo extends Component {
       return (
           <>
           <div style={{display:'inline-block',justifyContent: 'left', marginLeft: '8%'}}>
-            <a href="http://localhost:3000/">
+            <a href="/home">
             <img src={logo} alt="Logo"/>
             </a>
-            <a href="http://localhost:3000/login" style={{color:'red', fontSize:'30px' }}>
+            <a href="/" style={{color:'red', fontSize:'30px' }}>
               Login!
             </a>
           </div>

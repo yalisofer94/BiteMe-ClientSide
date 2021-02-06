@@ -67,7 +67,7 @@ const GameForm = () => {
     const [buttonValue4, setbuttonValue4] = useState('');
     const [buttonValue5, setbuttonValue5] = useState('');
 
-    async function chekcRadioButtons(e) {
+    async function checkRadioButtons(e) {
     
         setChoose11(buttonValue1 === "A");
         setChoose12(buttonValue1 === "B");
@@ -94,7 +94,7 @@ const GameForm = () => {
 
 
     async function sendForm (e) {
-        await chekcRadioButtons();
+        await checkRadioButtons();
         
         const game = [{
             question: question1,
@@ -206,146 +206,157 @@ const GameForm = () => {
             url: "http://localhost:4000/api/game",
           }).then((res) => {
               if(res.status === 200) {
-                  window.location = 'http://localhost:3000/';
+                  window.location = '/home';
               }
           });
     }
   
-  const inputChange = (info) => {
+const inputChange = (info) => {
     let {name, value, value1} = info.target;
     console.log(name,value, value1);
-    
-    
     console.log(this.state);
 }
-            return(
-                <>
 
-                <Logo />
-                    <div className="home-content" >
-                        <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                            <h1>Add New Game</h1>
-                            <form>
-                                    <label>Question 1: </label>
-                                    <TextField type="text" name='question1' onChange={(e) => setQuestion1(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
-                                <div style={{marginTop: '3%'}}>
-                                    <label>Answer A: </label>
-                                    <TextField style={{height: '25px'}} name='answer1' onChange={(e) => setAnswer11(e.target.value)} placeholder="text"/>
-                                    <label>Answer B: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer12(e.target.value)}/>
-                                    <label>Answer C: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer13(e.target.value)}/>
-                                    <label>Answer D: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer14(e.target.value)}/>
-                                </div>
-                                <FormControl component="fieldset">
-                                <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question1" value={buttonValue1} onChange={(e) => setbuttonValue1(e.target.value)} row>
-                                    <FormControlLabel value="A" control={<Radio />} label="A" />
-                                    <FormControlLabel value="B" control={<Radio />} label="B" />
-                                    <FormControlLabel value="C" control={<Radio />} label="C" />
-                                    <FormControlLabel value="D" control={<Radio />} label="D" />
-                                </RadioGroup>
-                                </FormControl>
-                                <div>
-                                    <label>Question 2: </label>
-                                    <TextField type="text" name='question2' onChange={(e) => setQuestion2(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}}  placeholder="Highest building in the world.."/>
-                                </div>
-                                <div style={{marginTop: '3%'}}>
-                                    <label>Answer A: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer21(e.target.value)} />
-                                    <label>Answer B: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer22(e.target.value)}/>
-                                    <label>Answer C: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer23(e.target.value)}/>
-                                    <label>Answer D: </label>
-                                    <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer24(e.target.value)}/>
-                                </div>
-                                <FormControl component="fieldset">
-                                <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question2" value={buttonValue2} onChange={(e) => setbuttonValue2(e.target.value)} row>
-                                    <FormControlLabel value="A" control={<Radio />} label="A" />
-                                    <FormControlLabel value="B" control={<Radio />} label="B" />
-                                    <FormControlLabel value="C" control={<Radio />} label="C" />
-                                    <FormControlLabel value="D" control={<Radio />} label="D" />
-                                </RadioGroup>
-                                </FormControl>
-                                <div>
-                                    <label>Question 3: </label>
-                                    <TextField type="text" name='question3' onChange={(e) => setQuestion3(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
-                                </div>
-                                <div style={{marginTop: '3%'}}>
-                                    <label>Answer A: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer31(e.target.value)} placeholder="text"/>
-                                    <label>Answer B: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer32(e.target.value)} placeholder="text"/>
-                                    <label>Answer C: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer33(e.target.value)} placeholder="text"/>
-                                    <label>Answer D: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer34(e.target.value)} placeholder="text"/>
-                                </div>
-                                <FormControl component="fieldset">
-                                <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question3" value={buttonValue3} onChange={(e) => setbuttonValue3(e.target.value)} row>
-                                    <FormControlLabel value="A" control={<Radio />}  label="A" />
-                                    <FormControlLabel value="B" control={<Radio />}  label="B" />
-                                    <FormControlLabel value="C" control={<Radio />}  label="C" />
-                                    <FormControlLabel value="D" control={<Radio />}  label="D" />
-                                </RadioGroup>
-                                </FormControl>
-                                <div>
-                                    <label>Question 4: </label>
-                                    <TextField type="text" name='question4' onChange={(e) => setQuestion4(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
-                                </div>
-                                <div style={{marginTop: '3%'}}>
-                                    <label>Answer A: </label>
-                                    <TextField style={{height: '25px'}}onChange={(e) => setAnswer41(e.target.value)} placeholder="text"/>
-                                    <label>Answer B: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer42(e.target.value)} placeholder="text"/>
-                                    <label>Answer C: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer43(e.target.value)} placeholder="text"/>
-                                    <label>Answer D: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer44(e.target.value)} placeholder="text"/>
-                                </div>
-                                <FormControl component="fieldset">
-                                <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question4" value={buttonValue4} onChange={(e) => setbuttonValue4(e.target.value)} row>
-                                    <FormControlLabel value="A" control={<Radio />}  label="A" />
-                                    <FormControlLabel value="B" control={<Radio />}  label="B" />
-                                    <FormControlLabel value="C" control={<Radio />}  label="C" />
-                                    <FormControlLabel value="D" control={<Radio />}  label="D" />
-                                </RadioGroup>
-                                </FormControl>
-                                <div>
-                                    <label>Question 5: </label>
-                                    <TextField type="text" name='question5' onChange={(e) => setQuestion5(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
-                                </div>
-                                <div style={{marginTop: '3%'}}>
-                                    <label>Answer A: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer51(e.target.value)} placeholder="text"/>
-                                    <label>Answer B: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer52(e.target.value)} placeholder="text"/>
-                                    <label>Answer C: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer53(e.target.value)} placeholder="text"/>
-                                    <label>Answer D: </label>
-                                    <TextField style={{height: '25px'}} onChange={(e) => setAnswer54(e.target.value)} placeholder="text"/>
-                                </div>
-                                <FormControl component="fieldset">
-                                <FormLabel component="legend">Answer to question 1:</FormLabel>
-                                <RadioGroup aria-label="gender" name="question5" value={buttonValue5} onChange={(e) => setbuttonValue5(e.target.value)} row>
-                                    <FormControlLabel value="A" control={<Radio />} label="A" />
-                                    <FormControlLabel value="B" control={<Radio />} label="B" />
-                                    <FormControlLabel value="C" control={<Radio />} label="C" />
-                                    <FormControlLabel value="D" control={<Radio />} label="D" />
-                                </RadioGroup>
-                                </FormControl>
-                                <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
-                            </form>
-                        </Grid>
-                <Footer />
-            </div>
-            </>  
-            )
+function SubmitButton(){
+    if (question1 && question2 && question3 && question4 && question5 && 
+        answer11 && answer12 && answer13 && answer14 && 
+        answer21 && answer22 && answer23 && answer24 &&
+        answer31 && answer32 && answer33 && answer34 &&
+        answer41 && answer42 && answer43 && answer44 &&
+        answer51 && answer52 && answer53 && answer54) {
+            return <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
+    } else {
+        return <Button variant="contained" disabled style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>FILL ALL!</b></Button>
+    };
+  };
+
+    return(
+        <>
+        <Logo />
+            <div className="home-content" >
+                <Grid container alignItems="center" justify="center" spacing={0} direction="column">
+                    <h1>Add New Game</h1>
+                    <form>
+                            <label>Question 1: </label>
+                            <TextField type="text" name='question1' onChange={(e) => setQuestion1(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
+                        <div style={{marginTop: '3%'}}>
+                            <label>Answer A: </label>
+                            <TextField style={{height: '25px'}} name='answer1' onChange={(e) => setAnswer11(e.target.value)} placeholder="text"/>
+                            <label>Answer B: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer12(e.target.value)}/>
+                            <label>Answer C: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer13(e.target.value)}/>
+                            <label>Answer D: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer14(e.target.value)}/>
+                        </div>
+                        <FormControl component="fieldset">
+                        <FormLabel component="legend">Answer to question 1:</FormLabel>
+                        <RadioGroup aria-label="gender" name="question1" value={buttonValue1} onChange={(e) => setbuttonValue1(e.target.value)} row>
+                            <FormControlLabel value="A" control={<Radio />} label="A" />
+                            <FormControlLabel value="B" control={<Radio />} label="B" />
+                            <FormControlLabel value="C" control={<Radio />} label="C" />
+                            <FormControlLabel value="D" control={<Radio />} label="D" />
+                        </RadioGroup>
+                        </FormControl>
+                        <div>
+                            <label>Question 2: </label>
+                            <TextField type="text" name='question2' onChange={(e) => setQuestion2(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}}  placeholder="Highest building in the world.."/>
+                        </div>
+                        <div style={{marginTop: '3%'}}>
+                            <label>Answer A: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer21(e.target.value)} />
+                            <label>Answer B: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer22(e.target.value)}/>
+                            <label>Answer C: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer23(e.target.value)}/>
+                            <label>Answer D: </label>
+                            <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer24(e.target.value)}/>
+                        </div>
+                        <FormControl component="fieldset">
+                        <FormLabel component="legend">Answer to question 1:</FormLabel>
+                        <RadioGroup aria-label="gender" name="question2" value={buttonValue2} onChange={(e) => setbuttonValue2(e.target.value)} row>
+                            <FormControlLabel value="A" control={<Radio />} label="A" />
+                            <FormControlLabel value="B" control={<Radio />} label="B" />
+                            <FormControlLabel value="C" control={<Radio />} label="C" />
+                            <FormControlLabel value="D" control={<Radio />} label="D" />
+                        </RadioGroup>
+                        </FormControl>
+                        <div>
+                            <label>Question 3: </label>
+                            <TextField type="text" name='question3' onChange={(e) => setQuestion3(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
+                        </div>
+                        <div style={{marginTop: '3%'}}>
+                            <label>Answer A: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer31(e.target.value)} placeholder="text"/>
+                            <label>Answer B: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer32(e.target.value)} placeholder="text"/>
+                            <label>Answer C: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer33(e.target.value)} placeholder="text"/>
+                            <label>Answer D: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer34(e.target.value)} placeholder="text"/>
+                        </div>
+                        <FormControl component="fieldset">
+                        <FormLabel component="legend">Answer to question 1:</FormLabel>
+                        <RadioGroup aria-label="gender" name="question3" value={buttonValue3} onChange={(e) => setbuttonValue3(e.target.value)} row>
+                            <FormControlLabel value="A" control={<Radio />}  label="A" />
+                            <FormControlLabel value="B" control={<Radio />}  label="B" />
+                            <FormControlLabel value="C" control={<Radio />}  label="C" />
+                            <FormControlLabel value="D" control={<Radio />}  label="D" />
+                        </RadioGroup>
+                        </FormControl>
+                        <div>
+                            <label>Question 4: </label>
+                            <TextField type="text" name='question4' onChange={(e) => setQuestion4(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
+                        </div>
+                        <div style={{marginTop: '3%'}}>
+                            <label>Answer A: </label>
+                            <TextField style={{height: '25px'}}onChange={(e) => setAnswer41(e.target.value)} placeholder="text"/>
+                            <label>Answer B: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer42(e.target.value)} placeholder="text"/>
+                            <label>Answer C: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer43(e.target.value)} placeholder="text"/>
+                            <label>Answer D: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer44(e.target.value)} placeholder="text"/>
+                        </div>
+                        <FormControl component="fieldset">
+                        <FormLabel component="legend">Answer to question 1:</FormLabel>
+                        <RadioGroup aria-label="gender" name="question4" value={buttonValue4} onChange={(e) => setbuttonValue4(e.target.value)} row>
+                            <FormControlLabel value="A" control={<Radio />}  label="A" />
+                            <FormControlLabel value="B" control={<Radio />}  label="B" />
+                            <FormControlLabel value="C" control={<Radio />}  label="C" />
+                            <FormControlLabel value="D" control={<Radio />}  label="D" />
+                        </RadioGroup>
+                        </FormControl>
+                        <div>
+                            <label>Question 5: </label>
+                            <TextField type="text" name='question5' onChange={(e) => setQuestion5(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
+                        </div>
+                        <div style={{marginTop: '3%'}}>
+                            <label>Answer A: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer51(e.target.value)} placeholder="text"/>
+                            <label>Answer B: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer52(e.target.value)} placeholder="text"/>
+                            <label>Answer C: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer53(e.target.value)} placeholder="text"/>
+                            <label>Answer D: </label>
+                            <TextField style={{height: '25px'}} onChange={(e) => setAnswer54(e.target.value)} placeholder="text"/>
+                        </div>
+                        <FormControl component="fieldset">
+                        <FormLabel component="legend">Answer to question 1:</FormLabel>
+                        <RadioGroup aria-label="gender" name="question5" value={buttonValue5} onChange={(e) => setbuttonValue5(e.target.value)} row>
+                            <FormControlLabel value="A" control={<Radio />} label="A" />
+                            <FormControlLabel value="B" control={<Radio />} label="B" />
+                            <FormControlLabel value="C" control={<Radio />} label="C" />
+                            <FormControlLabel value="D" control={<Radio />} label="D" />
+                        </RadioGroup>
+                        </FormControl>
+                        <SubmitButton/>
+                    </form>
+                </Grid>
+        <Footer />
+    </div>
+    </>  
+    )
 }
 
 export default GameForm;

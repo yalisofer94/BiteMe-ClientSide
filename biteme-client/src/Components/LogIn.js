@@ -1,9 +1,11 @@
 import React ,{ useState } from 'react';
 import Footer from './Footer';
+import LabelBottomNavigation from './Navbar';
 import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Axios from "axios";
+import GoogleLogin from 'react-google-login';
 import "./App.css";
 
 function Login() {
@@ -22,10 +24,24 @@ function Login() {
           url: "http://localhost:4000/api/user/login",
         }).then((res) => {
             if(res.status === 200) {
-                window.location = 'http://localhost:3000/';
+                window.location = '/home';
             }
         });
       };
+
+      const handleLogin = async googleData => {
+        const res = await fetch("http://localhost:4000/api/login", {
+            method: "POST",
+            body: JSON.stringify({
+            token: googleData.tokenId
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        const data = await res.json()
+        // store returned user somehow
+      }
 
         return(
             <div>
@@ -45,11 +61,18 @@ function Login() {
                             </form>
                             </div>
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                                <p>Want to <a style={{color:'black', fontSize:'15px', paddingLeft:'-1%',paddingRight:'4%' ,fontWeight:'bold'}}href='http://localhost:3000/register'>Register?</a></p>
+                                <p>Want to <a style={{color:'black', fontSize:'15px', paddingLeft:'-1%',paddingRight:'4%' ,fontWeight:'bold'}}href='/register'>Register?</a></p>
                             </div>
+                            <GoogleLogin
+                            clientId='102550194646-3l50npk3904rspfubhe612nttft9nt36.apps.googleusercontent.com'
+                            buttonText="Log in with Google"
+                            onSuccess={handleLogin}
+                            onFailure={handleLogin}
+                            cookiePolicy={'single_host_origin'}
+                            />
                         </Grid>
                     </div>
-                <Footer />
+                <Footer /> 
             </div>    
         )
 }

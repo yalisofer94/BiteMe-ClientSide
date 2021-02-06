@@ -8,8 +8,8 @@ import Register from './../Components/Register';
 const ReactRouter = () => {
     return(
         <>
-            <Route exact path='/' component={Home}/>
-            <Route path='/login' component={Login}/>
+            <Route exact path='/' component={Login}/>
+            <Route path='/home' component={Home}/>
             <Route path='/register' component={Register}/>
             <Route path='/addGame' component={GameForm}/>
             <Route path='/game' component={Game}/>
