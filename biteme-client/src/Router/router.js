@@ -5,14 +5,14 @@ import Home from './../Components/Home';
 import GameForm from './../Components/GameForm';
 import Game from './../Components/Game';
 import Register from './../Components/Register';
-import GameForm4 from './../Components/GameForm4';
+import GameForm3 from './../Components/GameForm3';
 const ReactRouter = () => {
     return(
         <>
             <Route exact path='/' component={Login}/>
             <Route path='/home' component={Home}/>
             <Route path='/register' component={Register}/>
-            <Route path='/addGame' component={GameForm4}/>
+            <Route path='/addGame' component={GameForm3}/>
             <Route path='/game' component={Game}/>
         </>
     )
