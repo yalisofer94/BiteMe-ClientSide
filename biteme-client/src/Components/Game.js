@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Logo from './Logo';
 import Axios from "axios";
 import "./App.css";
+import MyTimer from "./Timer";
 
 export default function Game() {
 
@@ -14,24 +15,28 @@ export default function Game() {
 	const [score, setScore] = useState(0);
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
+  // const [duration, setDuration] = useState(0);
 
-    ///////////////////////////////
+
   useEffect(() => {
     async function callApi() {
-      const res = await Axios.get(`http://localhost:4000/api/game/${1}`);
+      const res = await Axios.get(`http://localhost:4000/api/game/${4}`);
       const games = res?.data?.game;
+      const duration = res?.data?.duration;
+      // setDuration(dur);
+      console.log("durationnn", duration);
       setDatas(games);
       console.log("this is ", datas[0]);
       setLoading(false);
     }
     callApi();
   }, []);
-    
+
 	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
 			setScore(score + 1);
-		}
-
+    }
+    
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < datas.length) {
 			setCurrentQuestion(nextQuestion);
@@ -40,9 +45,11 @@ export default function Game() {
 		}
     };
 
+    MyTimer(300);
     return(
         <>
         <Logo/>
+        <MyTimer/>
         <div className='app'>
           {loading ? <h2>Loading</h2>:
           <div>
