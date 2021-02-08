@@ -41,6 +41,7 @@ a:hover {
   border-color: #d86024;
   color: #ffffff;
   background-color: #d86024;
+  justify-content: center;
 }
 
 .btn:hover {
@@ -96,7 +97,6 @@ a:hover {
 }
 
 button {
-  width: 100%;
   font-size: 16px;
   color: #ffffff;
   background-color: #252d4a;
@@ -116,7 +116,6 @@ button:hover {
 button:focus {
   outline: none;
 }
-
 
 .score-section {
   display: flex;

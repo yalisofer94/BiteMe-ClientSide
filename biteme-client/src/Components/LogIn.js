@@ -60,12 +60,10 @@ function Login() {
                                 <div style={{marginBottom:'5%'}}>
                                     <TextField id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined" onChange={(e) => setLoginPassword(e.target.value)}/>
                                 </div>
-                                <button type="submit" className="btn" style={{marginBottom:'5%'}} onClick={login}><b>Login Now</b></button>
+                                <button type="submit" className="btn" style={{alignContent: 'center', marginBottom:'5%', marginLeft:'12%'}} onClick={login}><b>Login Now</b></button>
                             </form>
                             </div>
-                            <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                                <p>Want to <a style={{color:'black', fontSize:'15px', paddingLeft:'-1%',paddingRight:'4%' ,fontWeight:'bold'}}href='/register'>Register?</a></p>
-                            </div>
+                            <div style={{marginTop:'0.5%', marginRight:'6%'}}>    
                             <GoogleLogin
                             clientId='102550194646-3l50npk3904rspfubhe612nttft9nt36.apps.googleusercontent.com'
                             buttonText="Log in with Google"
@@ -73,6 +71,8 @@ function Login() {
                             onFailure={handleLogin}
                             cookiePolicy={'single_host_origin'}
                             />
+                            </div>
+                            <a style={{marginTop:'1%', color:'black', fontSize:'15px', marginRight:'7%'}}href='/register'>Want to <strong>Register?</strong></a>
                         </Grid>
                     </div>
                 <Footer /> 
