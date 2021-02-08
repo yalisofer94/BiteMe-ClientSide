@@ -35,35 +35,23 @@ const GameForm = () => {
     const [choose12, setChoose12] = useState(false);
     const [choose13, setChoose13] = useState(false);
     const [choose14, setChoose14] = useState(false);
-
-
-    const [buttonValue1, setbuttonValue1] = useState('');
-
+    // Button value state
+    const [buttonValue1, setButtonValue1] = useState("");
+    // Game duration state
     const [durationss, setDuration] = useState(0);
 
-    async function checkRadioButtons(e) {
-        console.log("In checkRadioButtons - ", btnValue, quest, anst1, anst2, anst3, anst4)
-        setbuttonValue1(btnValue);
-        setQuestion1(quest);
-        setAnswer11(anst1);
-        setAnswer12(anst2);
-        setAnswer13(anst3);
-        setAnswer14(anst4);
-    
-        setChoose11(btnValue === "A");
-        setChoose12(buttonValue1 === "B");
-        setChoose13(buttonValue1 === "C");
-        setChoose14(buttonValue1 === "D");
-        setReady(true);
-    };
+    // Game state
+    const [questionNum1, setQuestionNum1] = useState({});
+    const [questionNum2, setQuestionNum2] = useState({});
+    const [questionNum3, setQuestionNum3] = useState({});
 
+    const gameForEntry = [];
 
     async function sendForm (e) {
-        const game = [{
-            //time: time,
+        const game = {
             duration: durationss,
-            game: [],
-        }];
+            game: [questionNum1, questionNum2, questionNum3],
+        };
 
         console.log(game);
         Axios({
@@ -77,7 +65,7 @@ const GameForm = () => {
               if(res.status === 200) {
                   window.location = '/home';
               }
-          });
+          }).catch(err => console.log(err));
     }
   
 const inputChange = (info) => {
@@ -87,17 +75,37 @@ const inputChange = (info) => {
 }
 
 function SubmitButton(){
-    if (question1 && answer11 && answer12 && answer13 && answer14 ) {
+    if (gameForEntry.length === 3 ) {
             return <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
     } else {
         return <Button variant="contained" disabled style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>FILL ALL!</b></Button>
     };
   };
+  
 // Entering duration (First step) 
 const durationClick = (e) => {
     setDuration(num);
     setCurrentStep(currentStep+1);
   }
+
+  async function checkRadioButtons(e) {
+    if(btnValue !== '' && quest !== '' && anst1 !== '' && anst2 !== '' && anst3 !== '' && anst4 !== ''){
+    console.log("In checkRadioButtons - ", btnValue.length, "C".length, quest, anst1, anst2, anst3, anst4)
+    setButtonValue1(btnValue);
+    setChoose11(btnValue == "A");
+    setChoose12(btnValue == "B");
+    setChoose13(btnValue == "C");
+    setChoose14(btnValue == "D");
+    setQuestion1(quest);
+    setAnswer11(anst1);
+    setAnswer12(anst2);
+    setAnswer13(anst3);
+    setAnswer14(anst4);
+    console.log("In CheckRadioButtons1 - ", buttonValue1, question1, answer11, answer12, answer13, answer14);
+    setReady(true);
+    } else { console.log("Trying to enter empty strings!")}
+    return;
+};
 
 async function onClickQuestion() {
     await checkRadioButtons();
@@ -124,11 +132,24 @@ async function onClickQuestion() {
                     isCorrect: choose14
                 }]
         }
-        console.log(q1);
+     
+        if(currentStep === 1){
+            setQuestionNum1(q1);
+            setCurrentStep(currentStep+1);
+        }
+        if(currentStep === 2){
+            setQuestionNum2(q1);
+            setCurrentStep(currentStep+1);
+        }
+        if(currentStep === 3){
+            setQuestionNum3(q1);
+            setCurrentStep(currentStep+1);
+            sendForm()
+        }
+        console.log(questionNum1,questionNum2,questionNum3);
+        
         setReady(false);
-    } else {
-        console.log(quest, anst1, anst2,anst3,anst4);
-        console.log(question1, answer11, answer12, answer13,answer14);
+    } else { 
         alert("Fill all field!");
     };
 }
@@ -146,8 +167,7 @@ async function onClickQuestion() {
           id="filled-number"
           label="minutes"
           type="number"
-          onChange={(e) => num=e.target.value}
-          onKeyDown={(e) => console.log("down")}
+          onChange={(e) => num = e.target.value}
           inputProps={{ min: "5", max: "15", step: "1" }}
           InputLabelProps={{
             shrink: true,
@@ -206,65 +226,85 @@ async function onClickQuestion() {
         if (currentStep !== 2) {
             return null
           } 
-        return(
-        <form>
-          <label>Question {currentStep}: </label>
-          <TextField type="text" name='question1' onChange={(e) => setQuestion1(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
-          <div style={{marginTop: '3%'}}>
-              <label>Answer A: </label>
-              <TextField style={{height: '25px'}} name='answer1' onChange={(e) => setAnswer11(e.target.value)} placeholder="text"/>
-              <label>Answer B: </label>
-              <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer12(e.target.value)}/>
-              <label>Answer C: </label>
-              <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer13(e.target.value)}/>
-              <label>Answer D: </label>
-              <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer14(e.target.value)}/>
-          </div>
-              <FormControl component="fieldset">
-              <FormLabel component="legend">Answer to question 1:</FormLabel>
-              <RadioGroup aria-label="gender" name="question1" value={buttonValue1} onChange={(e) => setbuttonValue1(e.target.value)} row>
-                  <FormControlLabel value="A"  control={<Radio />} label="A" />
-                  <FormControlLabel value="B" control={<Radio />} label="B" />
-                  <FormControlLabel value="C" control={<Radio />} label="C" />
-                  <FormControlLabel value="D" control={<Radio />} label="D" />
-              </RadioGroup>
+          return(
+            <div className="home-content" >
+            <Grid container alignItems="center" justify="center" spacing={0} direction="column">
+          <form>
+            <label>Question {currentStep}: </label>
+            <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
+            <div style={{marginTop: '3%'}}>
+                <label>Answer A: </label>
+                <TextField style={{height: '25px'}} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text"/>
+                <label>Answer B: </label>
+                <TextField style={{height: '25px'}}  placeholder="text" onChange={(e) => anst2 = e.target.value}/>
+                <label>Answer C: </label>
+                <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => anst3 = e.target.value}/>
+                <label>Answer D: </label>
+                <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => anst4 = e.target.value}/>
+            </div>
+            <FormControl component="fieldset">
+            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                <Select 
+                  labelId="Gender" 
+                  id="Gender"
+                  defaultValue={"A"}
+                  onChange={e => btnValue = e.target.value}
+                  fullWidth
+                  >
+                  <MenuItem value={"A"}>A</MenuItem>
+                  <MenuItem value={"B"}>B</MenuItem>
+                  <MenuItem value={"C"}>C</MenuItem>
+                  <MenuItem value={"D"}>D</MenuItem>
+                </Select>
               </FormControl>
-                  <Button variant="contained" color="primary"  style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>NEXT</b></Button>
-              <SubmitButton/>
-              </form>
-          )
+                    <Button variant="contained" color="primary" onClick={onClickQuestion} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>NEXT</b></Button>
+                <SubmitButton/>
+                </form>
+                </Grid>
+                </div>
+            )
       }
       const Step3 = (props) => {
         if (currentStep !== 3) {
             return null
           } 
-        return(
-        <form>
-          <label>Question {currentStep}: </label>
-          <TextField type="text" name='question1' onChange={(e) => setQuestion1(e.target.value)} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
-          <div style={{marginTop: '3%'}}>
-              <label>Answer A: </label>
-              <TextField style={{height: '25px'}} name='answer1' onChange={(e) => setAnswer11(e.target.value)} placeholder="text"/>
-              <label>Answer B: </label>
-              <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer12(e.target.value)}/>
-              <label>Answer C: </label>
-              <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer13(e.target.value)}/>
-              <label>Answer D: </label>
-              <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => setAnswer14(e.target.value)}/>
-          </div>
-              <FormControl component="fieldset">
-              <FormLabel component="legend">Answer to question 1:</FormLabel>
-              <RadioGroup aria-label="gender" name="question1" value={buttonValue1} onChange={(e) => setbuttonValue1(e.target.value)} row>
-                  <FormControlLabel value="A" control={<Radio />} label="A" />
-                  <FormControlLabel value="B" control={<Radio />} label="B" />
-                  <FormControlLabel value="C" control={<Radio />} label="C" />
-                  <FormControlLabel value="D" control={<Radio />} label="D" />
-              </RadioGroup>
+          return(
+            <div className="home-content" >
+            <Grid container alignItems="center" justify="center" spacing={0} direction="column">
+          <form>
+            <label>Question {currentStep}: </label>
+            <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{backgroundColor:'white', width: '80%', height: '25px'}} placeholder="Highest building in the world.."/>
+            <div style={{marginTop: '3%'}}>
+                <label>Answer A: </label>
+                <TextField style={{height: '25px'}} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text"/>
+                <label>Answer B: </label>
+                <TextField style={{height: '25px'}}  placeholder="text" onChange={(e) => anst2 = e.target.value}/>
+                <label>Answer C: </label>
+                <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => anst3 = e.target.value}/>
+                <label>Answer D: </label>
+                <TextField style={{height: '25px'}} placeholder="text" onChange={(e) => anst4 = e.target.value}/>
+            </div>
+            <FormControl component="fieldset">
+            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                <Select 
+                  labelId="Gender" 
+                  id="Gender"
+                  defaultValue={"A"}
+                  onChange={e => btnValue = e.target.value}
+                  fullWidth
+                  >
+                  <MenuItem value={"A"}>A</MenuItem>
+                  <MenuItem value={"B"}>B</MenuItem>
+                  <MenuItem value={"C"}>C</MenuItem>
+                  <MenuItem value={"D"}>D</MenuItem>
+                </Select>
               </FormControl>
-                  <Button variant="contained" color="primary"  style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>NEXT</b></Button>
-              <SubmitButton/>
-              </form>
-          )
+                    <Button variant="contained" color="primary" onClick={onClickQuestion} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>NEXT</b></Button>
+                <SubmitButton/>
+                </form>
+                </Grid>
+                </div>
+            )
       }
     return(
         <>

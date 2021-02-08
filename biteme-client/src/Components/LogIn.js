@@ -12,6 +12,7 @@ function Login() {
 
     const [loginUsername, setLoginUsername] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
+    const [userToken, setUserToken] = useState("");
 
     const login = () => {
         Axios({
@@ -34,15 +35,15 @@ function Login() {
         const res = await fetch("http://localhost:4000/api/login", {
             method: "POST",
             body: JSON.stringify({
-            token: googleData.tokenId
+            token: googleData.tokenId,
           }),
+          credentials: 'include',
           headers: {
             "Content-Type": "application/json"
           }
         })
         const data = await res.json()
-        console.log("hahah", data);
-        // store returned user somehow
+        
       }
 
         return(
