@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import {useTimer} from 'react-timer-hook';
+import { duration } from '@material-ui/core';
 
-function MyTimer({ expiryTimestamp }) {
+function MyTimer({ expiryTimestamp}) {
     const {
       seconds,
       minutes
@@ -15,10 +16,10 @@ function MyTimer({ expiryTimestamp }) {
       </div>
     );
   }
-  
-  export default function setTime() {
+
+  export default function setTime({duration}) {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 60);
+    time.setSeconds(time.getSeconds() + (!duration ? 60: (60 * duration)));
     return (
       <div>
         <MyTimer expiryTimestamp={time} />

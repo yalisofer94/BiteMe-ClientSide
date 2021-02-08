@@ -15,18 +15,15 @@ export default function Game() {
 	const [score, setScore] = useState(0);
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [duration, setDuration] = useState(0);
-
+  const [duration, setDuration] = useState(0);
+  
 
   useEffect(() => {
     async function callApi() {
-      const res = await Axios.get(`http://localhost:4000/api/game/${4}`);
+      const res = await Axios.get(`http://localhost:4000/api/game/`);
       const games = res?.data?.game;
-      const duration = res?.data?.duration;
-      // setDuration(dur);
-      console.log("durationnn", duration);
+      setDuration(res?.data?.duration);
       setDatas(games);
-      console.log("this is ", datas[0]);
       setLoading(false);
     }
     callApi();
@@ -45,11 +42,12 @@ export default function Game() {
 		}
     };
 
-    MyTimer(300);
     return(
         <>
+        {!duration ? <h2>Loading</h2>:
+        <>
         <Logo/>
-        <MyTimer/>
+        <h2 style={{textAlign:'center', fontSize:'70px'}}>Game duration - <MyTimer duration={duration}/></h2>
         <div className='app'>
           {loading ? <h2>Loading</h2>:
           <div>
@@ -61,20 +59,22 @@ export default function Game() {
                 <>
                     <div className='question-section'>
                         <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{datas.length}
+                            <span>Question {currentQuestion + 1}</span>{datas.length}
                         </div>
                         <div className='question-text'>{datas[currentQuestion].question}</div>
                     </div>
                     <div className='answer-section'>
-                        {datas[currentQuestion].options.map((option) => (
-                            <button onClick={() => handleAnswerOptionClick(option.isCorrect)}>{option.answer}</button>
+                        {datas[currentQuestion].options.map((option, i) => (
+                            <button key={i} onClick={() => handleAnswerOptionClick(option.isCorrect)}>{option.answer}</button>
                         ))}
                     </div>
                 </>
             )}</div>
           }
-        </div>
+        </div></>}
         <Footer/>
         </>
+      
     );
+        
 }
