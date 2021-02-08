@@ -44,13 +44,16 @@ const GameForm = () => {
     const [questionNum1, setQuestionNum1] = useState({});
     const [questionNum2, setQuestionNum2] = useState({});
     const [questionNum3, setQuestionNum3] = useState({});
+    const [questionNum4, setQuestionNum4] = useState({});
+    const [questionNum5, setQuestionNum5] = useState({});
+    
 
     const gameForEntry = [];
 
     async function sendForm(e) {
         const game = {
             duration: durationss,
-            game: [questionNum1, questionNum2, questionNum3],
+            game: [questionNum1, questionNum2, questionNum3, questionNum4, questionNum5],
         };
 
         console.log(game);
@@ -145,7 +148,15 @@ const GameForm = () => {
                     setQuestionNum3(q);
                     setCurrentStep(currentStep + 1);
                 }
-                console.log(questionNum1, questionNum2, questionNum3);
+                if (currentStep === 4) {
+                    setQuestionNum4(q);
+                    setCurrentStep(currentStep + 1);
+                }
+                if (currentStep === 5) {
+                    setQuestionNum5(q);
+                    setCurrentStep(currentStep + 1);
+                }
+                console.log(questionNum1, questionNum2, questionNum3, questionNum4, questionNum5);
 
                 setReady(false);
             } else {
@@ -305,8 +316,95 @@ const GameForm = () => {
             </div>
         )
     }
+
     const Step4 = (props) => {
         if (currentStep !== 4) {
+            return null
+        }
+        return (
+            <div className="home-content" >
+                <Grid container alignItems="center" justify="center" spacing={0} direction="column">
+                    <form>
+                        <label>Question {currentStep}: </label>
+                        <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
+                        <div style={{ marginTop: '3%' }}>
+                            <label>Answer A: </label>
+                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label>Answer B: </label>
+                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label>Answer C: </label>
+                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label>Answer D: </label>
+                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                        </div>
+                        <FormControl component="fieldset">
+                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                            <Select
+                                labelId="Gender"
+                                id="Gender"
+                                defaultValue={"A"}
+                                onChange={e => btnValue = e.target.value}
+                                fullWidth
+                            >
+                                <MenuItem value={"A"}>A</MenuItem>
+                                <MenuItem value={"B"}>B</MenuItem>
+                                <MenuItem value={"C"}>C</MenuItem>
+                                <MenuItem value={"D"}>D</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
+                        <SubmitButton />
+                    </form>
+                </Grid>
+            </div>
+        )
+    }
+
+    const Step5 = (props) => {
+        if (currentStep !== 5) {
+            return null
+        }
+        return (
+            <div className="home-content" >
+                <Grid container alignItems="center" justify="center" spacing={0} direction="column">
+                    <form>
+                        <label>Question {currentStep}: </label>
+                        <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
+                        <div style={{ marginTop: '3%' }}>
+                            <label>Answer A: </label>
+                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label>Answer B: </label>
+                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label>Answer C: </label>
+                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label>Answer D: </label>
+                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                        </div>
+                        <FormControl component="fieldset">
+                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                            <Select
+                                labelId="Gender"
+                                id="Gender"
+                                defaultValue={"A"}
+                                onChange={e => btnValue = e.target.value}
+                                fullWidth
+                            >
+                                <MenuItem value={"A"}>A</MenuItem>
+                                <MenuItem value={"B"}>B</MenuItem>
+                                <MenuItem value={"C"}>C</MenuItem>
+                                <MenuItem value={"D"}>D</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
+                        <SubmitButton />
+                    </form>
+                </Grid>
+            </div>
+        )
+    }
+
+    const Step6 = (props) => {
+        if (currentStep !== 6) {
             return null
         }
         return (
@@ -325,25 +423,28 @@ const GameForm = () => {
                     <form>
                         <Step0
                             currentStep={currentStep}
-                        //handleChange={inputChange}
-                        //email={this.state.email}
                         />
                         <Step1
                             currentStep={currentStep}
                             handleChange={inputChange}
-                        //email={this.state.email}
                         />
                         <Step2
                             currentStep={currentStep}
                             handleChange={inputChange}
-                        //username={this.state.username}
                         />
                         <Step3
                             currentStep={currentStep}
                             handleChange={inputChange}
-                        //password={this.state.password}
                         />
                         <Step4
+                            currentStep={currentStep}
+                            handleChange={inputChange}
+                        />
+                        <Step5
+                            currentStep={currentStep}
+                            handleChange={inputChange}
+                        />
+                        <Step6
                             currentStep={currentStep}
                             handleChange={inputChange}
                         />
