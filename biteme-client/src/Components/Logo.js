@@ -10,9 +10,7 @@ class Logo extends Component {
             <a href="/home">
             <img src={logo} alt="Logo"/>
             </a>
-            <a href="/" style={{color:'red', fontSize:'30px' }}>
-              Login!
-            </a>
+            
           </div>
           <div style={{display:'inline-block', justifyContent: 'right' }}>
            

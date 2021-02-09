@@ -46,7 +46,7 @@ const GameForm = () => {
     const [questionNum3, setQuestionNum3] = useState({});
     const [questionNum4, setQuestionNum4] = useState({});
     const [questionNum5, setQuestionNum5] = useState({});
-    
+
 
     const gameForEntry = [];
 
@@ -76,14 +76,6 @@ const GameForm = () => {
         console.log(name, value, value1);
         console.log(this.state);
     }
-
-    function SubmitButton() {
-        if (gameForEntry.length === 4) {
-            return <Button variant="contained" color="primary" onClick={sendForm} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>CREATE</b></Button>
-        } else {
-            return <Button variant="contained" disabled style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>FILL ALL!</b></Button>
-        };
-    };
 
     // Entering duration (First step) 
     const durationClick = (e) => {
@@ -171,31 +163,37 @@ const GameForm = () => {
         }
         return (
             <>
-                <label>Game Duration: </label>
-                <form>
-                    <TextField
-                        id="filled-number"
-                        label="minutes"
-                        type="number"
-                        onChange={(e) => num = e.target.value}
-                        inputProps={{ min: "5", max: "15", step: "1" }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="filled"
-                    />
-                    <Button variant="contained" color="primary" onClick={durationClick} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
-                </form>
+                <div style={{ height: '400px', marginTop: '30%' }}>
+                    <Grid container alignItems="center" justify="center" spacing={0} direction="column">
+                        <label style={{ fontSize: '20px' }}>Game Duration: </label>
+                        <form >
+                            <TextField container alignItems="center" justify="center" spacing={0} direction="column"
+                                id="filled-number"
+                                label="minutes"
+                                type="number"
+                                style={{ width: '100%' }}
+                                onChange={(e) => num = e.target.value}
+                                inputProps={{ min: "5", max: "15", step: "1" }}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                variant="filled"
+                            />
+                            <Button variant="contained" color="primary" onClick={durationClick} style={{ width: '10%', height: '40px', marginBottom: '10%', marginLeft: '24%', marginTop: '10%', borderRadius: '15px' }}><b>NEXT</b></Button>
+                        </form>
+                    </Grid>
+                </div>
             </>
         )
     }
 
     const Step1 = (props) => {
+
         if (currentStep !== 1) {
             return null
         }
         return (
-            <div className="home-content" >
+            <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
                         <label>Question {currentStep}: </label>
@@ -210,8 +208,8 @@ const GameForm = () => {
                             <label>Answer D: </label>
                             <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl component="fieldset">
-                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                            <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
                                 id="Gender"
@@ -225,8 +223,7 @@ const GameForm = () => {
                                 <MenuItem value={"D"}>D</MenuItem>
                             </Select>
                         </FormControl>
-                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
-                        <SubmitButton />
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ alignContent: 'center', width: '10%', height: '40px', marginBottom: '10%', borderRadius: '15px', marginTop: '8%' }}><b>NEXT</b></Button>
                     </form>
                 </Grid>
             </div>
@@ -237,7 +234,7 @@ const GameForm = () => {
             return null
         }
         return (
-            <div className="home-content" >
+            <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
                         <label>Question {currentStep}: </label>
@@ -252,8 +249,8 @@ const GameForm = () => {
                             <label>Answer D: </label>
                             <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl component="fieldset">
-                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                            <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
                                 id="Gender"
@@ -267,8 +264,7 @@ const GameForm = () => {
                                 <MenuItem value={"D"}>D</MenuItem>
                             </Select>
                         </FormControl>
-                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
-                        <SubmitButton />
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ alignContent: 'center', width: '10%', height: '40px', marginBottom: '10%', borderRadius: '15px', marginTop: '8%' }}><b>NEXT</b></Button>
                     </form>
                 </Grid>
             </div>
@@ -279,7 +275,7 @@ const GameForm = () => {
             return null
         }
         return (
-            <div className="home-content" >
+            <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
                         <label>Question {currentStep}: </label>
@@ -294,8 +290,8 @@ const GameForm = () => {
                             <label>Answer D: </label>
                             <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl component="fieldset">
-                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                            <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
                                 id="Gender"
@@ -309,8 +305,7 @@ const GameForm = () => {
                                 <MenuItem value={"D"}>D</MenuItem>
                             </Select>
                         </FormControl>
-                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
-                        <SubmitButton />
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ alignContent: 'center', width: '10%', height: '40px', marginBottom: '10%', borderRadius: '15px', marginTop: '8%' }}><b>NEXT</b></Button>
                     </form>
                 </Grid>
             </div>
@@ -322,7 +317,7 @@ const GameForm = () => {
             return null
         }
         return (
-            <div className="home-content" >
+            <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
                         <label>Question {currentStep}: </label>
@@ -337,8 +332,8 @@ const GameForm = () => {
                             <label>Answer D: </label>
                             <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl component="fieldset">
-                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                            <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
                                 id="Gender"
@@ -352,8 +347,7 @@ const GameForm = () => {
                                 <MenuItem value={"D"}>D</MenuItem>
                             </Select>
                         </FormControl>
-                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
-                        <SubmitButton />
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ alignContent: 'center', width: '10%', height: '40px', marginBottom: '10%', borderRadius: '15px', marginTop: '8%' }}><b>NEXT</b></Button>
                     </form>
                 </Grid>
             </div>
@@ -365,7 +359,7 @@ const GameForm = () => {
             return null
         }
         return (
-            <div className="home-content" >
+            <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
                         <label>Question {currentStep}: </label>
@@ -380,8 +374,8 @@ const GameForm = () => {
                             <label>Answer D: </label>
                             <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl component="fieldset">
-                            <InputLabel id="Gender">Answer to question {currentStep}</InputLabel>
+                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                            <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
                                 id="Gender"
@@ -395,8 +389,7 @@ const GameForm = () => {
                                 <MenuItem value={"D"}>D</MenuItem>
                             </Select>
                         </FormControl>
-                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>NEXT</b></Button>
-                        <SubmitButton />
+                        <Button variant="contained" color="primary" onClick={onClickQuestion} style={{ alignContent: 'center', width: '10%', height: '40px', marginBottom: '10%', borderRadius: '15px', marginTop: '8%' }}><b>NEXT</b></Button>
                     </form>
                 </Grid>
             </div>
@@ -408,9 +401,11 @@ const GameForm = () => {
             return null
         }
         return (
-          <>
-            <Button variant="contained" color="primary" onClick={sendForm} style={{ width: '10%', height: '40px', marginBottom: '10%', marginTop: '5%' }}><b>Submit</b></Button>
-          </>
+            <>
+                <div style={{ height: '400px' }}>
+                    <Button variant="contained" color="primary" onClick={sendForm} style={{ alignContent: 'center', width: '10%', height: '40px', marginBottom: '10%', borderRadius: '15px', top: '10%' }}><b>CREATE</b></Button>
+                </div>
+            </>
         )
     }
     return (
@@ -419,7 +414,6 @@ const GameForm = () => {
             <div className="home-content" >
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <h1>Add New Game</h1>
-                    <p>Step {currentStep} </p>
                     <form>
                         <Step0
                             currentStep={currentStep}

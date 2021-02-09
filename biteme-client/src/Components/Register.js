@@ -42,9 +42,9 @@ function Register (props) {
                 <Logo />
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                            <h1 style={{marginBottom:'2%'}}>Sing Up</h1>
+                            <h1 style={{marginBottom:'2%'}}>Sign Up</h1>
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                            <form style={{ display: 'inline-block', marginLeft: 'auto',marginRight: 'auto',textAlign: 'left'}}>
+                            <form style={{ display: 'inline-block'}}>
                                 <div style={{marginBottom:'5%', width:'300px'}}>
                                     <TextField id="outlined-basic" label="user" type="text" id="userLoginEmail" variant="outlined" onChange={(e) => setRegisterUsername(e.target.value)}/>
                                 </div>
@@ -58,7 +58,7 @@ function Register (props) {
                             </form>
                             </div>
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                                <p>Back to <a style={{color:'black', fontSize:'15px', paddingRight:'4%', fontWeight:'bold'}} href='/'>Login</a></p>
+                            <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/register'>Back to <strong>Login</strong></a>
                             </div>
                         </Grid>
                     </div>

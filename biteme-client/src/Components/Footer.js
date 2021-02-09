@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 class Footer extends Component {
   render() {
     return (
-      <div >
+      <div style={{position: 'relative', left:0, bottom:0, right:0}}>
         <Grid container className="bg-footer">
             <Grid item md={2}></Grid>
               <Grid item md={3}>

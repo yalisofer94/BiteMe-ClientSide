@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Axios from "axios";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +20,23 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
+
+const logout = () => {
+  Axios({
+    method: "GET",
+    withCredentials: true,
+    url: "http://localhost:4000/api/login/",
+}).then((res) => {
+    console.log(res);
+    if(res.data.msg === "User logged-out"){
+        window.location = '/';
+    }
+    else{ 
+        window.location = '/';
+    }
+    
+});
+}
 
 export default function ButtonAppBar() {
   const classes = useStyles();
@@ -32,7 +51,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BiteMe🍕
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button onClick = {logout} color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </div>

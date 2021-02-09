@@ -30,7 +30,7 @@ class Home extends Component{
             window.location = '/login';
         }
         else{ 
-            window.location = '/game';
+            window.location = '/';
         }
     });
     }
@@ -76,13 +76,12 @@ class Home extends Component{
     };
   
 
-
       render() {
           return(
               <>
               <ButtonAppBar/>
               <Logo/>
-              <button onClick={this.logout}>Logout</button>
+              {/* <button onClick={this.logout}>Logout</button> */}
               <div className="home-content">
               <Grid container alignItems="center" justify="center" spacing={0} direction="column">
               <Grid item xl></Grid>
@@ -90,8 +89,8 @@ class Home extends Component{
                 <h1 style={{marginTop: '5%'}}><strong>FULFILL YOUR DESIRE</strong></h1>
                   <Grid>
                     <form style={{justifyContent: 'center', textAlign: 'center'}}> 
-                      <input type="text" style={{backgroundColor:'white', width: '40%', height: '34px', marginTop: '3%'}} onChange={this.handleChange}  placeholder="Enter restaurant..." />
-                      <Button variant="contained" onClick={this.sendRest} color="primary" style={{width:'10%', height:'40px', marginLeft: '0.8%'}}><b>Search</b></Button>
+                      <input type="text" style={{backgroundColor:'white', width: '70%', height: '40px', marginTop: '3%', borderRadius:'15px'}} onChange={this.handleChange}  placeholder="  Enter restaurant..." />
+                      <Button variant="contained" onClick={this.sendRest} color="primary" style={{width:'10%', height:'40px', marginLeft: '0.9%', borderRadius:'15px'}}><b>Search</b></Button>
                     </form>
                   </Grid>
               </Grid>

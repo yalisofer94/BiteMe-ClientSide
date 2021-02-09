@@ -224,9 +224,9 @@ function SubmitButton(){
         answer31 && answer32 && answer33 && answer34 &&
         answer41 && answer42 && answer43 && answer44 &&
         answer51 && answer52 && answer53 && answer54) {
-            return <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>CREATE</b></Button>
+            return <Button variant="contained" color="primary" onClick={sendForm} style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%', borderRadius:'15px'}}><b>CREATE</b></Button>
     } else {
-        return <Button variant="contained" disabled style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%'}}><b>FILL ALL!</b></Button>
+        return <Button variant="contained" disabled style={{width:'10%', height:'40px', marginBottom: '10%', marginTop: '5%', borderRadius:'15px'}}><b>FILL ALL!</b></Button>
     };
   };
 

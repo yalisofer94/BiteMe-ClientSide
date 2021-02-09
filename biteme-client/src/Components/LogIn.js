@@ -43,6 +43,9 @@ function Login() {
           }
         })
         const data = await res.json()
+        if(res.status === 200){
+          window.location = '/home';
+        }
         
       }
 
@@ -52,8 +55,8 @@ function Login() {
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>
                             <h1 style={{marginBottom:'5%'}}>Login Your Account</h1>
-                            <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                            <form style={{ display: 'inline-block', marginLeft: 'auto',marginRight: 'auto',textAlign: 'left'}}>
+                            {/* <div style={{width:'100%',display: 'block', textAlign: 'center'}}> */}
+                            {/* <form style={{ display: 'inline-block', marginLeft: 'auto',marginRight: 'auto',textAlign: 'left'}}>
                                 <div style={{marginBottom:'5%', width:'300px'}}>
                                     <TextField id="outlined-basic" type="text" label="UserName" id="userLoginEmail" variant="outlined" onChange={(e) => setLoginUsername(e.target.value)}/>
                                 </div>
@@ -61,8 +64,8 @@ function Login() {
                                     <TextField id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined" onChange={(e) => setLoginPassword(e.target.value)}/>
                                 </div>
                                 <button type="submit" className="btn" style={{alignContent: 'center', marginBottom:'5%', marginLeft:'12%'}} onClick={login}><b>Login Now</b></button>
-                            </form>
-                            </div>
+                            </form> */}
+                            {/* </div> */}
                             <div style={{marginTop:'0.5%', marginRight:'6%'}}>    
                             <GoogleLogin
                             clientId='102550194646-3l50npk3904rspfubhe612nttft9nt36.apps.googleusercontent.com'

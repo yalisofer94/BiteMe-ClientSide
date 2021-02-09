@@ -94,9 +94,10 @@ a:hover {
 .app {
   background-color: #485b9e;
   padding: 20px;
+  
 }
 
-button {
+/* button {
   font-size: 16px;
   color: #ffffff;
   background-color: #252d4a;
@@ -104,6 +105,21 @@ button {
   display: flex;
   padding: 5px;
   justify-content: flex-start;
+  align-items: center;
+  border: 5px solid #234668;
+  cursor: pointer;
+} */
+
+.ans_button {
+  font-size: 20px;
+  width: 100%;
+  margin-top: 3%;
+  color: #ffffff;
+  background-color: #252d4a;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
   align-items: center;
   border: 5px solid #234668;
   cursor: pointer;
@@ -138,7 +154,12 @@ button:focus {
 }
 
 .question-text {
+  width: 100%;
   margin-bottom: 12px;
+  background-color: white;
+  opacity: 70%;
+  border-radius: 4px;
+  height: 10%; 
 }
 
 /* .timer-text {
