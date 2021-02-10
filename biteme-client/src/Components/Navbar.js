@@ -38,6 +38,11 @@ const logout = () => {
 });
 }
 
+const randEmoji = () => {
+  const emojis = ['🍔','🍕','🌶','🍩','🌭','🥨','🥦'];
+  return `BiteMe ${emojis[Math.floor(Math.random() * (emojis.length - 1) + 1)]}`;
+}
+
 export default function ButtonAppBar() {
   const classes = useStyles();
 
@@ -49,7 +54,7 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            BiteMe🍕
+            {randEmoji()}
           </Typography>
           <Button onClick = {logout} color="inherit">Logout</Button>
         </Toolbar>

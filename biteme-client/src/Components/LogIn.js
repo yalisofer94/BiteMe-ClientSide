@@ -43,10 +43,16 @@ function Login() {
           }
         })
         const data = await res.json()
+        console.log(res.cookies);
         if(res.status === 200){
-          window.location = '/home';
+          if(data === "User don't exist"){
+            window.location = '/register';  
+          }else{
+            window.location = '/home';
+          }
+        } else {
+          alert("Some error occurred");
         }
-        
       }
 
         return(
@@ -55,18 +61,7 @@ function Login() {
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>
                             <h1 style={{marginBottom:'5%'}}>Login Your Account</h1>
-                            {/* <div style={{width:'100%',display: 'block', textAlign: 'center'}}> */}
-                            {/* <form style={{ display: 'inline-block', marginLeft: 'auto',marginRight: 'auto',textAlign: 'left'}}>
-                                <div style={{marginBottom:'5%', width:'300px'}}>
-                                    <TextField id="outlined-basic" type="text" label="UserName" id="userLoginEmail" variant="outlined" onChange={(e) => setLoginUsername(e.target.value)}/>
-                                </div>
-                                <div style={{marginBottom:'5%'}}>
-                                    <TextField id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined" onChange={(e) => setLoginPassword(e.target.value)}/>
-                                </div>
-                                <button type="submit" className="btn" style={{alignContent: 'center', marginBottom:'5%', marginLeft:'12%'}} onClick={login}><b>Login Now</b></button>
-                            </form> */}
-                            {/* </div> */}
-                            <div style={{marginTop:'0.5%', marginRight:'6%'}}>    
+                            <div style={{marginTop:'0.5%'}}>    
                             <GoogleLogin
                             clientId='102550194646-3l50npk3904rspfubhe612nttft9nt36.apps.googleusercontent.com'
                             buttonText="Log in with Google"
@@ -75,13 +70,12 @@ function Login() {
                             cookiePolicy={'single_host_origin'}
                             />
                             </div>
-                            <a style={{marginTop:'1%', color:'black', fontSize:'15px', marginRight:'7%'}}href='/register'>Want to <strong>Register?</strong></a>
+                            <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/register'>Want to <strong>Register?</strong></a>
                         </Grid>
                     </div>
                 <Footer /> 
             </div>    
         )
 }
-
 
  export default Login;

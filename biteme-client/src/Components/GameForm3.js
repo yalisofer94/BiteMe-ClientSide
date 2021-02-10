@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Logo from './Logo';
 import Axios from "axios";
+import Navbar from './Navbar';
 import "./App.css";
 
 const GameForm = () => {
@@ -410,6 +411,7 @@ const GameForm = () => {
     }
     return (
         <>
+            <Navbar/>
             <Logo />
             <div className="home-content" >
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">

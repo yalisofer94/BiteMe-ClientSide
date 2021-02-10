@@ -58,7 +58,7 @@ function Register (props) {
                             </form>
                             </div>
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
-                            <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/register'>Back to <strong>Login</strong></a>
+                            <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/'>Back to <strong>Login</strong></a>
                             </div>
                         </Grid>
                     </div>

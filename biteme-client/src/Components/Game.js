@@ -4,7 +4,8 @@ import Footer from './Footer';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Logo from './Logo';
-import Axios from "axios";
+import Axios from 'axios';
+import Navbar from './Navbar';
 import "./App.css";
 import MyTimer from "./Timer";
 
@@ -16,7 +17,6 @@ export default function Game() {
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [duration, setDuration] = useState(0);
-
 
   useEffect(() => {
     async function callApi() {
@@ -46,18 +46,18 @@ export default function Game() {
     <>
       {!duration ? <h2>Loading</h2> :
         <>
+        <Navbar />
           <Logo />
-            <h2 style={{ textAlign: 'center', fontSize: '70px' }}>Game duration - <MyTimer duration={duration} /></h2>
+            <h2 style={{ textAlign: 'center', fontSize: '70px'}}>Time left<MyTimer duration={duration} /></h2>
             <div className='app'>
               {loading ? <h2>Loading</h2> :
-                <div style={{ width: '600px', marginBottom: '3%' }}>
+                <div style={{ width: '600px', marginBottom: '3%'}}>
                   {showScore ? (
                     <div className='score-section'>
                       You scored {score} out of {datas.length}
                     </div>
                   ) : (
                       <>
-                        
                           <div className='question-section'>
                             <div className='question-count'>
                               <span>Question {currentQuestion + 1}/</span>{datas.length}
@@ -76,7 +76,5 @@ export default function Game() {
         </>}
       <Footer />
     </>
-
   );
-
 }
