@@ -1,0 +1,37 @@
+Task List:
+
+GENERAL:
+*When pressing on the logo -> check if the user is logged in. 
+    -> logged in = redirect to home page.
+    -> not logged in = redirect to login page.
+
+
+Home Page:
+*If the client does not exist, redirect to the register page and then back to the login(Don't create the cookie).
+
+
+Register Page:
+*Addin is admin option when registering.
+
+
+Home Page:
+*When client logs in, they should see on the logo part their name(mabye photo).
+    *They should transfer details on every page.
+
+
+*Make search return real information from google api 
+    -> then adds card of the restaurant to the page with option to choose it as his own restaurant 
+    -> choise will go into the DB and leave the client out of the page.
+
+(?) Add group page:
+*Adding user to the group from the DB.
+
+Backend:
+*Creating logic of groups -
+    -Adding people to the group.
+*Creating logics of games - 
+    -gathering scores, then send emails with result.
+    -when people finishing to choose- if tie --> it should send email with game url. else --> it should send email with the winning restaurant.
+
+General:
+*When logging out the client should be redirected to the login page.
