@@ -10,17 +10,17 @@ const cardStyle = {
 
 const CardsListing = ({
   rests,
-  //handleEditClick,
-  //handleDeleteClick,
+  onSelect,
+  onDelete,
 }) => {
   return (
     <div className={cardStyle}>
-      {rests.map((rest,i) => (
+      {rests.map((rest, i) => (
         <RestaurantsCard
-          key={i}
+          key={rest.place}
           data={rest}
-          ////handleEditClick={handleEditClick}
-          ////handleDeleteClick={handleDeleteClick}
+          onSelect={onSelect}
+          onDelete={onDelete}
         />
       ))}
     </div>

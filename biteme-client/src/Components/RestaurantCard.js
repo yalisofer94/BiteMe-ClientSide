@@ -7,10 +7,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios";
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const useStyles = makeStyles({
     root: {
       minWidth: '30px',
+      maxHeight: '40%',
     },
     title: {
       fontSize: 14,
@@ -28,15 +32,24 @@ const useStyles = makeStyles({
 //         .catch(err => console.log(`Error is: ${err}`));
 // }
 
-  export default function RestaurantCard({data}) {
-    console.log("The data",data.formatted_address);
+  export default function RestaurantCard({data, onDelete, onSelect}) {
+    console.log("The data",data);
     const address = data.formatted_address;
     const name = data.name;
     const hours = data.opening_hours.open_now;
-    console.log(hours)
+    const id = data.place_id;
+    console.log(id)
     const rating = data.rating;
 
     const classes = useStyles();
+
+    function handleSelect() {
+      onSelect(id)
+    }
+
+    function handleDelete() {
+      onDelete(id)
+    }
     return(
     <>
     <Card style={{marginTop: '3%',marginLeft:'1%', width:'190px', display:'inline-block', background: '#39CCCC', borderRadius:'15px', border: '1px #001f3f solid'}}>
@@ -53,7 +66,10 @@ const useStyles = makeStyles({
         </Typography> 
     </CardContent>
     <CardActions style={{justifyContent:'center', alignContent:'center'}}>
-        <Button size="large" color="primary" >select</Button>
+        <Button size="large" color="primary" onClick={handleSelect}>select</Button>
+        <IconButton aria-label="delete" onClick={handleDelete}>
+          <DeleteIcon fontSize="small" />
+        </IconButton>
       </CardActions>
     </Card>
     </>

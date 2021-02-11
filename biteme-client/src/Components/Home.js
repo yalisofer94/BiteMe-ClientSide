@@ -19,7 +19,8 @@ class Home extends Component{
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        //this.pushMapData = this.pushMapData.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.handleSelectClick = this.handleSelectClick.bind(this);
     }
 
     logout = () => {
@@ -42,6 +43,38 @@ class Home extends Component{
       console.log(this.state.inputField);
     }
 
+    handleDeleteClick = (e) => {
+      const newRests = this.state.rests_data.filter(
+        (rest) => rest.place_id !== e
+      );
+      this.setState({
+        rests_data: newRests
+    })
+    };
+
+    handleSelectClick = (e) => {
+      console.log("Returning data - ",e)
+      const rest = this.state.rests_data.filter((rest) => rest.place_id === e);
+      console.log("Hey there mama - ",rest);
+      if(rest !== null){
+        Axios({
+          method: "POST",
+          data: {
+            //user_id: userId,
+            restaurant_id: rest.place_id,
+            },
+          withCredentials: false,
+          url: `http://localhost:4000/api/order`
+        }).then((res)=> {
+
+        }).catch((err) => {
+
+        })
+      } else {
+        console.log("Issue occurred while trying to send the selected restaurant!");
+      }
+    }
+
     sendRest = (e) => {
       if (this.state.rests_data.length < 4) {
       Axios({
@@ -49,7 +82,7 @@ class Home extends Component{
         withCredentials: false,
         url: `http://localhost:4000/api/restaurantAPI?restName=${this.state.inputField}` //`https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${this.state.inputField}`,
     }).then((res) => {
-        if(res.status === 200){
+        if(res.status === 200 && res.data.candidates[0].opening_hours.open_now !== null){
             console.log("The datda is - ",(res.data));
             let myArr= [...this.state.rests_data]
               myArr.push(res.data.candidates[0])
@@ -61,32 +94,16 @@ class Home extends Component{
             console.log(this.state.rests_data);
         }
         else{ 
-            window.location = '/game';
+            alert("Something wrong happened! \nStatus - ", res.status);
         }
         
-    });}else {
-      alert('HI THIS IS AN ALERT!')
+    }).catch((err) => {
+      alert(`You've entered a bad restaurant name, '${this.state.inputField}' does not exist 😖, try again!`);
+      console.log("Error with bringing the restaurant you chose 😖 ", err);
+    });
+    }else {
+      alert("The maximum number of restautrants are 4! 😇");
     }}
-
-    // pushMapData(restaurants) {
-    //   Axios({
-    //     method: "POST",
-    //     data : {
-    //       name: restaurants.candidates[0].name,
-    //       address: restaurants.candidates[0].formatted_address,
-    //       price: restaurants.candidates[0].price_level,
-    //       rate: restaurants.candidates[0].rating,
-    //       open: restaurants.candidates[0].opening_hours.open_now
-    //     },
-    //     withCredentials: false,
-    //     url: `https://bite-me-app1.herokuapp.com/api/restaurant`,
-    //   }).then((res) => {
-    //       if(res.status === 200) {
-    //         console.log(restaurants);
-    //         window.location = '/home';
-    //       }
-    //   });
-    // };
 
       render() {
           return(
@@ -101,11 +118,10 @@ class Home extends Component{
                 <h1 style={{marginTop: '5%'}}><strong>FULFILL YOUR DESIRE</strong></h1>
                   <Grid>
                     <form style={{justifyContent: 'center', textAlign: 'center'}}> 
-                      <input type="text" style={{backgroundColor:'white', width: '70%', height: '40px', marginTop: '3%', borderRadius:'15px'}} onChange={this.handleChange}  placeholder="  Enter restaurant..." />
-                      {/* {this.state.rests_data.length ? <CardsListing rests={this.state.rests_data} /> : <h3> No restaurants to show..</h3>} */}
+                      <input type="text" style={{backgroundColor:'white', width: '70%', height: '40px', marginTop: '3%', borderRadius:'15px', paddingLeft: '2%'}} onChange={this.handleChange}  placeholder="  Enter restaurant..." />
                       <Button variant="contained" onClick={this.sendRest} color="primary" style={{width:'10%', height:'40px', marginLeft: '0.9%', borderRadius:'15px'}}><b>Search</b></Button>
                       {this.state.rests_data.length === 0 && (<h2 style={{ paddingTop: 10, textAlign: 'center' }}>No Restaurants to show</h2>)} 
-                      <CardsListing rests={this.state.rests_data} />
+                      <CardsListing rests={this.state.rests_data} onDelete={this.handleDeleteClick} onSelect={this.handleSelectClick}/>
                     </form>
                   </Grid>
               </Grid>

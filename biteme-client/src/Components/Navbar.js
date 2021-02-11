@@ -39,7 +39,7 @@ const logout = () => {
 }
 
 const randEmoji = () => {
-  const emojis = ['🍔','🍕','🌶','🍩','🌭','🥨','🥦'];
+  const emojis = ['🍔','🍕','🌶','🍩','🌭','🥨','🥦', '🍜', '🍿', '🥡','🍱','🍉','🍍','🥙','🍝' ];
   return `BiteMe ${emojis[Math.floor(Math.random() * (emojis.length - 1) + 1)]}`;
 }
 
