@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
-import ReactRouter from './Router/router';
+import App from './Components/App';
 
 ReactDOM.render(
   <Router>
-    <ReactRouter/>
+    <App />
   </Router>,
   document.getElementById('root')
 );

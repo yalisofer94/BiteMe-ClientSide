@@ -1,35 +1,15 @@
 import React ,{ useState } from 'react';
 import Footer from './Footer';
-import LabelBottomNavigation from './Navbar';
 import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Axios from "axios";
 import GoogleLogin from 'react-google-login';
+import { UserContext } from "../UserContext";
 import "./App.css";
 
 function Login() {
 
-    const [loginUsername, setLoginUsername] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-    const [userToken, setUserToken] = useState("");
-
-    const login = () => {
-        Axios({
-          method: "POST",
-          data: {
-            username: loginUsername,
-            password: loginPassword,
-          },
-          withCredentials: true,
-          url: "http://localhost:4000/api/user/login",
-        }).then((res) => {
-            console.log(res);
-            if(res.status === 200) {
-                window.location = '/home';
-            }
-        });
-      };
+    //const {userInfo, setUserInfo} = UserContext(UserContext);
 
       const handleLogin = async googleData => {
         const res = await fetch("http://localhost:4000/api/login", {
@@ -43,11 +23,17 @@ function Login() {
           }
         })
         const data = await res.json()
-        console.log(res.cookies);
+        console.log(res.cookies, data);
         if(res.status === 200){
           if(data === "User don't exist"){
             window.location = '/register';  
           }else{
+            // setUserInfo({
+            //   id: data.id,
+            //   userName: data.Name,
+            //   email: data.email,
+            // });
+            // console.log(userInfo);
             window.location = '/home';
           }
         } else {
