@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Route} from 'react-router-dom';
 import Login from './../Components/LogIn';
 import Home from './../Components/Home';
@@ -6,6 +6,7 @@ import GameForm from './../Components/GameForm';
 import Game from './../Components/Game';
 import Register from './../Components/Register';
 import GameForm3 from './../Components/GameForm3';
+import UserContext from '../UserContext';
 
 const ReactRouter = () => {
     return(

@@ -31,7 +31,7 @@ DONE! *Creating logic of groups -
     -Adding people to the group.
 *Creating logics of games - 
     -gathering scores, then send emails with result.
-    -when people finishing to choose- if tie --> it should send email with game url. else --> it should send email with the winning restaurant.
+    -when people finishing to choose - if tie --> it should send email with game url. else --> it should send email with the winning restaurant.
 
-General:
-DONE! *When logging out the client should be redirected to the login page.
+*order.ctrl - 
+    -addOrder does not get parameters. check why!!!

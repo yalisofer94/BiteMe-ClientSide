@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import Footer from './Footer';
 import MapContainer from './Map';
 import Grid from '@material-ui/core/Grid';
@@ -14,8 +14,12 @@ class Home extends Component{
         super(props);
         this.state = {
           inputField : "",
-          rests_data: []
+          rests_data: [],
+          username: props.location.userName,
+          userid : props.location.userId
         }
+        console.log("props received -",props.location.userName, props.location.userId);
+
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -59,12 +63,12 @@ class Home extends Component{
       if(rest !== null){
         Axios({
           method: "POST",
-          data: {
-            //user_id: userId,
-            restaurant_id: rest.place_id,
-            },
           withCredentials: false,
-          url: `http://localhost:4000/api/order`
+          url: `http://localhost:4000/api/order`,
+              data: {
+                user_id: this.state.userid,
+                restaurant_id: rest.place_id,
+              },
         }).then((res)=> {
 
         }).catch((err) => {
@@ -108,7 +112,7 @@ class Home extends Component{
       render() {
           return(
               <>
-              <ButtonAppBar/>
+              <ButtonAppBar username={this.state.username}/>
               <Logo/>
               {/* <button onClick={this.logout}>Logout</button> */}
               <div className="home-content">

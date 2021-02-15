@@ -1,15 +1,27 @@
-import React ,{ useState } from 'react';
+import React ,{ useState, useContext, useEffect } from 'react';
 import Footer from './Footer';
 import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
 import Axios from "axios";
 import GoogleLogin from 'react-google-login';
-import { UserContext } from "../UserContext";
+import UserContext from '../UserContext';
+import {useHistory} from "react-router-dom";
 import "./App.css";
 
 function Login() {
-
-    //const {userInfo, setUserInfo} = UserContext(UserContext);
+    const history = useHistory();
+    const {userName, setUserName, userId, setUserId} = useContext(UserContext);
+    
+    useEffect(() => {
+      if(userName !== '' && userId !== 0){
+        console.log("1",userName, userId);
+        let path = '/home';
+        history.push({
+          pathname: path,
+          userId: userId,
+          userName: userName
+        });
+      }}, [userName, userId]);
 
       const handleLogin = async googleData => {
         const res = await fetch("http://localhost:4000/api/login", {
@@ -27,14 +39,9 @@ function Login() {
         if(res.status === 200){
           if(data === "User don't exist"){
             window.location = '/register';  
-          }else{
-            // setUserInfo({
-            //   id: data.id,
-            //   userName: data.Name,
-            //   email: data.email,
-            // });
-            // console.log(userInfo);
-            window.location = '/home';
+          } else {
+            setUserName(data.username);
+            setUserId(data.id);
           }
         } else {
           alert("Some error occurred");

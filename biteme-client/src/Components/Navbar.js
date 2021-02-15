@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Axios from "axios";
-
+import UserContext from '../UserContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +43,9 @@ const randEmoji = () => {
   return `BiteMe ${emojis[Math.floor(Math.random() * (emojis.length - 1) + 1)]}`;
 }
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
+  const user = useContext(UserContext);
 
   return (
     <div className={classes.root}>
@@ -55,6 +56,9 @@ export default function ButtonAppBar() {
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             {randEmoji()}
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+            Hello, {props.username}!
           </Typography>
           <Button onClick = {logout} color="inherit">Logout</Button>
         </Toolbar>
