@@ -18,7 +18,7 @@ class Home extends Component{
           username: props.location.userName,
           userid : props.location.userId
         }
-        console.log("props received -",props.location.userName, props.location.userId);
+        console.log("props received -",props.location.userName, props.location.userId, this.state.userid);
 
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
@@ -38,7 +38,7 @@ class Home extends Component{
         }
         else{ 
             window.location = '/';
-        }
+        } 
     });
     }
 
@@ -60,6 +60,7 @@ class Home extends Component{
       console.log("Returning data - ",e)
       const rest = this.state.rests_data.filter((rest) => rest.place_id === e);
       console.log("Hey there mama - ",rest);
+      console.log("getting from select ", this.props.location.userName, rest[0].place_id);
       if(rest !== null){
         Axios({
           method: "POST",
@@ -67,7 +68,7 @@ class Home extends Component{
           url: `http://localhost:4000/api/order`,
               data: {
                 user_id: this.state.userid,
-                restaurant_id: rest.place_id,
+                restaurant_id: rest[0].place_id,
               },
         }).then((res)=> {
 
