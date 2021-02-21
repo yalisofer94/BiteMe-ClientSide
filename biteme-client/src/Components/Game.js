@@ -47,7 +47,6 @@ export default function Game() {
       {!duration ? <h2>Loading</h2> :
         <>
         <Navbar />
-          <Logo />
             <h2 style={{ textAlign: 'center', fontSize: '70px'}}>Time left<MyTimer duration={duration} /></h2>
             <div className='app'>
               {loading ? <h2>Loading</h2> :
@@ -74,7 +73,6 @@ export default function Game() {
               }
             </div>
         </>}
-      <Footer />
     </>
   );
 }

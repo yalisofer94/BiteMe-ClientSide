@@ -10,6 +10,7 @@ Login Page:
 DONE! *If the client does not exist, redirect to the register page and then back to the login(Don't create the cookie).
 
 
+
 Register Page:
 Not important for now *Adding is admin option when registering.
 *verifications in the registration inputs.
@@ -56,3 +57,34 @@ DONE! *Creating logic of groups -
          ],
          "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
      } 
+
+
+
+     front - 
+        view
+        login logic in front
+        when refreshing the page, the name of the person disappear -> DONE
+        make map respond to the restaurants we found 
+        delete storage when logging out.
+
+    back - 
+        group logic
+
+
+flow 1 -
+    login as admin -> creating new game (admin options) -> form and confirmation
+    * how to know if the is admin - DONE
+    * add button for admin (maybe navbar)
+    * add edit option for the game
+    * add confirmation that game was edited/deleted/add
+    * if we have time - add option for videos/something cool
+
+flow 2 - 
+    login as user -> choose what to eat -> confirmation
+    * --maybe-- add image from google the restaurant to the card.
+
+flow 3 -
+    receiving mail about game-> play game -> get mail with scores
+    * make sure the game work only in the destinated time.
+    * add logic - to calculate which rest is chosen and if the order is full.
+    * add logic - send mail to all users.

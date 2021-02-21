@@ -1,13 +1,13 @@
-import React, { Component, useContext } from "react";
-import Footer from './Footer';
+import React, { Component, useContext , componentDidMount} from "react";
 import MapContainer from './Map';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Logo from './Logo';
-import ButtonAppBar from './Navbar';
+// import ButtonAppBar from './Navbar';
+import PersistentDrawerLeft from './Navbar';
 import "./App.css";
 import Axios from "axios";
 import CardsListing from './CardsListing';
+
 
 class Home extends Component{
     constructor(props) {
@@ -15,11 +15,14 @@ class Home extends Component{
         this.state = {
           inputField : "",
           rests_data: [],
-          username: props.location.userName,
-          userid : props.location.userId
+          username: localStorage.userName,
+          userid : localStorage.userId,
+          admin: localStorage.isAdmin,
+          lng: 34.7818 ,
+          lat: 32.0853
         }
-        console.log("props received -",props.location.userName, props.location.userId, this.state.userid);
-
+        console.log("props received -",props.location.userName, props.location.userId, this.state.userid, this.state.admin);
+      
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -60,7 +63,7 @@ class Home extends Component{
       console.log("Returning data - ",e)
       const rest = this.state.rests_data.filter((rest) => rest.place_id === e);
       console.log("Hey there mama - ",rest);
-      console.log("getting from select ", this.props.location.userName, rest[0].place_id);
+      console.log("getting from select ", this.state.username, rest[0].place_id);
       if(rest !== null){
         Axios({
           method: "POST",
@@ -71,7 +74,17 @@ class Home extends Component{
                 restaurant_id: rest[0].place_id,
               },
         }).then((res)=> {
-
+            const { history } = this.props;
+            const answer = res.data;
+            if(answer == "user already ordered")
+              alert("You've already ordered!")
+              if(history) history.push('/home');
+            if(answer == "Successfully added to existing order")
+              alert("The order successfully added to the existing group order!")
+              if(history) history.push('/selectSuccess');
+            if(answer == "Successfully created new order")
+              alert("The order successfully added! You are hungry for sure, you are the first person in the team to order!🍽🍴")
+              if(history) history.push('/selectSuccess');
         }).catch((err) => {
 
         })
@@ -89,6 +102,13 @@ class Home extends Component{
     }).then((res) => {
         if(res.status === 200 && res.data.candidates[0].opening_hours.open_now !== null){
             console.log("The datda is - ",(res.data));
+            const lat = res.data.candidates[0].geometry.location.lat;
+            const lng = res.data.candidates[0].geometry.location.lng;
+            console.log(lat,lng)
+            this.setState({
+              lat: res.data.candidates[0].geometry.location.lat,
+              lng: res.data.candidates[0].geometry.location.lng
+          })
             let myArr= [...this.state.rests_data]
               myArr.push(res.data.candidates[0])
               console.log(myArr);
@@ -111,16 +131,20 @@ class Home extends Component{
     }}
 
       render() {
+        let {admin} = this.state;
+
           return(
               <>
-              <ButtonAppBar username={this.state.username}/>
-              <Logo/>
+              {/* <ButtonAppBar admin={this.state.admin} username={this.state.username}/> */}
+              <PersistentDrawerLeft admin={this.state.admin} username={this.state.username}/>
               {/* <button onClick={this.logout}>Logout</button> */}
               <div className="home-content">
               <Grid container alignItems="center" justify="center" spacing={0} direction="column">
               <Grid item xl></Grid>
               <Grid item xl={8}>
-                <h1 style={{marginTop: '5%'}}><strong>FULFILL YOUR DESIRE</strong></h1>
+              {/* {admin ? <h1>Admin</h1> : <h1>NotAdmin</h1>} */}
+
+                <h1 style={{marginTop: '5%', color:'MintCream'}}><strong>FULFILL YOUR DESIRE</strong></h1>
                   <Grid>
                     <form style={{justifyContent: 'center', textAlign: 'center'}}> 
                       <input type="text" style={{backgroundColor:'white', width: '70%', height: '40px', marginTop: '3%', borderRadius:'15px', paddingLeft: '2%'}} onChange={this.handleChange}  placeholder="  Enter restaurant..." />
@@ -132,11 +156,10 @@ class Home extends Component{
               </Grid>
             </Grid>
             </div>
-          <MapContainer/>
+          <MapContainer lat={this.state.lat} lng={this.state.lng}/>
               <Grid style={{backgroundImage: `url('./../Images/background3\ copy.jpg')`, paddingTop:'0.3%'}}>
               <h1 style={{justifyContent: 'center', textAlign: 'center'}}>LET THE FUN BEGIN</h1>
               </Grid>
-          <Footer/>
           </>
           )
     }

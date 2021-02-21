@@ -412,7 +412,6 @@ const GameForm = () => {
     return (
         <>
             <Navbar/>
-            <Logo />
             <div className="home-content" >
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <h1>Add New Game</h1>
@@ -446,7 +445,6 @@ const GameForm = () => {
                         />
                     </form>
                 </Grid>
-                <Footer />
             </div>
         </>
     );

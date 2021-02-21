@@ -12,13 +12,22 @@ function Login() {
     const history = useHistory();
     const {userName, setUserName, userId, setUserId} = useContext(UserContext);
     
+
+
+    React.useEffect(() => {
+      const savedId = String(localStorage.getItem(userId) || '');
+      const savedName = String (localStorage.getItem(userName) || '');
+      setUserName(savedName);
+      setUserId(savedId);
+    }, [])
+    
     useEffect(() => {
       if(userName !== '' && userId !== 0){
         console.log("1",userName, userId);
         let path = '/home';
         history.push({
           pathname: path,
-          userId: userId,
+          userId: localStorage.getItem(userId),
           userName: userName
         });
       }}, [userName, userId]);
@@ -42,15 +51,17 @@ function Login() {
           } else {
             setUserName(data.username);
             setUserId(data.id);
+            localStorage.setItem("userId", data.id)
+            localStorage.setItem("userName", data.username)
+            localStorage.setItem("isAdmin", data.admin)
           }
         } else {
           alert("Some error occurred");
         }
       }
-
+      
         return(
             <div>
-                <Logo />
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>
                             <h1 style={{marginBottom:'5%'}}>Login Your Account</h1>
@@ -66,7 +77,6 @@ function Login() {
                             <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/register'>Want to <strong>Register?</strong></a>
                         </Grid>
                     </div>
-                <Footer /> 
             </div>    
         )
 }

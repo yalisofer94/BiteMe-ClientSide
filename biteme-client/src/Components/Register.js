@@ -39,7 +39,6 @@ function Register (props) {
 
     return(
             <div>
-                <Logo />
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                             <h1 style={{marginBottom:'2%'}}>Sign Up</h1>
@@ -62,7 +61,6 @@ function Register (props) {
                             </div>
                         </Grid>
                     </div>
-                <Footer />
             </div>    
         )
 }

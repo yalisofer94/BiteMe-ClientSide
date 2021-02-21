@@ -32,8 +32,11 @@ a:hover {
 
 /* Home */
 .home-content{
-  background-image: url('./../Images/background3\ copy.jpg');
+  background-image: url('./../Images/background.jpeg');
+  background-repeat: repeat-x;
   height: 500px;
+  width: 100%;
+  
 }
 
 /*login*/
@@ -65,7 +68,7 @@ a:hover {
 
 /* Footer */
 .bg-footer {
-  background-color: #007CC7;
+  background-color: #3f51b5;
   padding-top: 20px;
 }
 
@@ -190,3 +193,6 @@ button:focus {
 .incorrect {
   background-color: #ff3333;
 }
+
+
+ 
