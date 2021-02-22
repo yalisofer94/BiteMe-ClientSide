@@ -6,6 +6,8 @@ import Game from './../Components/Game';
 import Register from './../Components/Register';
 import SelectSuccess from './../Components/SelectSuccess';
 import GameForm3 from './../Components/GameForm3';
+import UpdateForm from './../Components/UpdateForm';
+
 
 const ReactRouter = () => {
     return(
@@ -16,6 +18,7 @@ const ReactRouter = () => {
             <Route path='/register' component={Register}/>
             <Route path='/addGame' component={GameForm3}/>
             <Route path='/game' component={Game}/>
+            <Route path='/update' component={UpdateForm}/>
         </>
     )
 }

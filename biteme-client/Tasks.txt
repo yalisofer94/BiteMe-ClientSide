@@ -1,4 +1,4 @@
-Task List:
+    Task List:
 
 GENERAL:
 *When pressing on the logo -> check if the user is logged in. 
@@ -81,7 +81,7 @@ flow 2 -
     * --maybe-- add image from google the restaurant to the card.
 
 flow 3 -
-    receiving mail about game-> play game -> get mail with scores
+    receiving mail about game-> play game -> open page with what restaurant won
+    * logic to run game - where score is kept, 
+    * make the game be a link that will be send
     * make sure the game work only in the destinated time.
-    * add logic - to calculate which rest is chosen and if the order is full.
-    * add logic - send mail to all users.

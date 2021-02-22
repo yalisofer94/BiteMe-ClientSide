@@ -15,9 +15,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import AddBox from '@material-ui/icons/AddBox';
+import GamesIcon from '@material-ui/icons/Games';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import {useHistory} from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -136,10 +136,14 @@ const randEmoji = () => {
     }});
   }
   const addGamePath = () => {
+    // console.log(props.admin);
     history.push({pathname: '/addGame'});
   }
   const updateGame = () => {
     //Task to do 
+  }
+  const PlayGamePath = () => {
+    history.push('/game');
   }
 
   return (
@@ -203,9 +207,9 @@ const randEmoji = () => {
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon onClick={redirect=page}/> : <MailIcon />}</ListItemIcon> */}
               {/* <ListItemText primary={text} /> */}
              {/* </ListItem>  */}
-            
-            <MenuItem onClick={addGamePath}><InboxIcon/>Create Game</MenuItem>
-            <MenuItem onClick={updateGame}><InboxIcon/>Edit Game</MenuItem>
+        <MenuItem onClick={PlayGamePath}><GamesIcon/><ListItemText>Play Game</ListItemText></MenuItem> 
+        { props.admin && <MenuItem onClick={addGamePath}><AddIcon/><ListItemText>Create Game</ListItemText></MenuItem> }
+        { props.admin && <MenuItem onClick={updateGame}><EditIcon/><ListItemText>Edit Game</ListItemText></MenuItem> }
 
           {/* ) */}
           {/* ) */}

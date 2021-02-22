@@ -12,8 +12,8 @@ const styles = theme => ({
     color: "white",
     position: "fixed",
     left: "0",
-    bottom: "0",
-    height: "15vh",
+    bottom: "10",
+    height: "18vh",
     width: "100vw"
   }
 });

@@ -16,7 +16,7 @@ import Axios from "axios";
 import Navbar from './Navbar';
 import "./App.css";
 
-const GameForm = () => {
+const UpdateForm = () => {
     let num = 0;
     let quest = "";
     let anst1 = "";
@@ -56,6 +56,8 @@ const GameForm = () => {
             duration: durationss,
             game: [questionNum1, questionNum2, questionNum3, questionNum4, questionNum5],
         };
+
+        
 
         console.log(game);
         Axios({
@@ -451,4 +453,4 @@ const GameForm = () => {
 }
 
 
-export default GameForm;
+export default UpdateForm;

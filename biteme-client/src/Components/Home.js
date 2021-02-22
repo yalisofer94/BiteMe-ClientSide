@@ -21,7 +21,7 @@ class Home extends Component{
           lng: 34.7818 ,
           lat: 32.0853
         }
-        console.log("props received -",localStorage.userName, localStorage.userId, localStorage.isAdmin);
+        console.log("props received -",localStorage.userName, localStorage.userId, localStorage.admin);
       
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
@@ -63,7 +63,7 @@ class Home extends Component{
       console.log("Returning data - ",e)
       const rest = this.state.rests_data.filter((rest) => rest.place_id === e);
       console.log("Hey there mama - ",rest);
-      console.log("getting from select ", this.state.username, rest[0].place_id);
+      console.log("getting from select ", this.state.username, rest[0].place_id, rest[0].name);
       if(rest !== null){
         Axios({
           method: "POST",
@@ -72,6 +72,7 @@ class Home extends Component{
               data: {
                 user_id: localStorage.userId,
                 restaurant_id: rest[0].place_id,
+                restaurant_name: rest[0].name,
               },
         }).then((res)=> {
             const { history } = this.props;
@@ -131,7 +132,7 @@ class Home extends Component{
     }}
 
       render() {
-        let {admin} = this.state;
+        // let {admin} = this.state;
 
           return(
               <>
