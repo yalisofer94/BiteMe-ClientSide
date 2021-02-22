@@ -2,12 +2,10 @@ import React, { Component, useContext , componentDidMount} from "react";
 import MapContainer from './Map';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-// import ButtonAppBar from './Navbar';
 import PersistentDrawerLeft from './Navbar';
-import "./App.css";
 import Axios from "axios";
 import CardsListing from './CardsListing';
-
+import "./App.css";
 
 class Home extends Component{
     constructor(props) {
@@ -21,7 +19,6 @@ class Home extends Component{
           lng: 34.7818 ,
           lat: 32.0853
         }
-        console.log("props received -",localStorage.userName, localStorage.userId, localStorage.admin);
       
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
@@ -47,7 +44,6 @@ class Home extends Component{
 
     handleChange(event) {
       this.setState({inputField: event.target.value});
-      console.log(this.state.inputField);
     }
 
     handleDeleteClick = (e) => {
@@ -60,10 +56,7 @@ class Home extends Component{
     };
 
     handleSelectClick = (e) => {
-      console.log("Returning data - ",e)
       const rest = this.state.rests_data.filter((rest) => rest.place_id === e);
-      console.log("Hey there mama - ",rest);
-      console.log("getting from select ", this.state.username, rest[0].place_id, rest[0].name);
       if(rest !== null){
         Axios({
           method: "POST",
@@ -73,7 +66,6 @@ class Home extends Component{
                 user_id: localStorage.userId,
                 restaurant_id: rest[0].place_id,
                 restaurant_name: rest[0].name,
-                // restaurant_icon: rest[0].icon,
               },
         }).then((res)=> {
             const { history } = this.props;
@@ -105,19 +97,15 @@ class Home extends Component{
         if(res.status === 200 && res.data.candidates[0].opening_hours.open_now !== null){
             const lat = res.data.candidates[0].geometry.location.lat;
             const lng = res.data.candidates[0].geometry.location.lng;
-            console.log(lat,lng)
             this.setState({
               lat: res.data.candidates[0].geometry.location.lat,
               lng: res.data.candidates[0].geometry.location.lng
           })
             let myArr= [...this.state.rests_data]
               myArr.push(res.data.candidates[0])
-              console.log('rests_data',myArr);
               this.setState({
                 rests_data: myArr
             })
-            //this.setState({ rests_data: [...this.state.rests_data, res.data.candidates[0]] });
-            console.log('restss',this.state.rests_data);
         }
         else{ 
             alert("Something wrong happened! \nStatus - ", res.status);
@@ -125,26 +113,19 @@ class Home extends Component{
         
     }).catch((err) => {
       alert(`You've entered a bad restaurant name, '${this.state.inputField}' does not exist 😖, try again!`);
-      console.log("Error with bringing the restaurant you chose 😖 ", err);
     });
     }else {
-      alert("The maximum number of restautrants are 4! 😇");
+      alert("The maximum number of restaurants are 4! 😇");
     }}
 
       render() {
-        // let {admin} = this.state;
-
           return(
               <>
-              {/* <ButtonAppBar admin={this.state.admin} username={this.state.username}/> */}
               <PersistentDrawerLeft admin={this.state.admin} username={this.state.username}/>
-              {/* <button onClick={this.logout}>Logout</button> */}
               <div className="home-content">
               <Grid container alignItems="center" justify="center" spacing={0} direction="column">
               <Grid item xl></Grid>
               <Grid item xl={8}>
-              {/* {admin ? <h1>Admin</h1> : <h1>NotAdmin</h1>} */}
-
                 <h1 style={{marginTop: '5%', color:'#FDF8F5'}}><strong>FULFILL YOUR DESIRE</strong></h1>
                   <Grid>
                     <form style={{justifyContent: 'center', textAlign: 'center'}}> 

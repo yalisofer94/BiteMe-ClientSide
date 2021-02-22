@@ -1,6 +1,7 @@
-import React from 'react';
-import RestaurantsCard from './RestaurantCard';
+import React ,{componentDidMount}from 'react';
+import GamesCard from './GameCard';
 import PersistentDrawerLeft from './Navbar';
+import Axios from "axios";
 
 const cardStyle = {
     display: "grid",
@@ -9,28 +10,69 @@ const cardStyle = {
     margin: 'auto'
   }
 
+class GamesListing extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = { 
+           games: []
+        }
 
-const CardsListing = ({
-  game,
-  // onSelect,
-  onDelete,
-}) => {
-  return (
+        this.onDelete = this.onDelete.bind(this);
+        
+    }
+
+    componentDidMount(){
+            Axios({
+                method: "GET",
+                withCredentials: true,
+                url: "http://localhost:4000/api/game/all",
+            }).then((res) => {
+                if (res.status === 200) {
+                    console.log(res.data[0].game)
+                    let theArr = [...res.data]
+                    this.setState(prevState => ({
+                      games: theArr
+                    }))
+                }
+            }).catch(err => console.log(err)); 
+      }
+
+      onDelete = (id) => {
+        const { history } = this.props;
+        Axios({
+            method: "DELETE",
+            withCredentials: true,
+            url: `http://localhost:4000/api/game/${id}`,
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log(res.data)
+                const newGames = this.state.games.filter(
+                    (game) => game.id !== id
+                  );
+                  this.setState({
+                    games: newGames
+                })
+                history.push('/DeleteSuccess');
+            }
+        }).catch(err => console.log(err));
+      }
+    render(){
+    return (
+      <>
     <PersistentDrawerLeft admin={localStorage.isAdmin} username={localStorage.userName}/>
     <div className="home-content">
-    <div className={cardStyle}>
-      {rests.map((rest, i) => (
-        <RestaurantsCard
-          key={rest.place}
-          data={rest}
+      {this.state.games.map((game) => (
+        <GamesCard
+          key={game}
+          data={game}
           // onSelect={onSelect}
-          onDelete={onDelete}
+          onDelete={this.onDelete}
         />
       ))
       }
     </div>
-    </div>
-  );
+    </>
+  )}
 };
 
-export default CardsListing;
+export default GamesListing;

@@ -114,19 +114,6 @@ body, html {
   background-size: cover;  
 }
 
-/* button {
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #252d4a;
-  border-radius: 15px;
-  display: flex;
-  padding: 5px;
-  justify-content: flex-start;
-  align-items: center;
-  border: 5px solid #234668;
-  cursor: pointer;
-} */
-
 .ans_button {
   font-size: 20px;
   width: 100%;
@@ -162,12 +149,10 @@ button:focus {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .question-count {
   margin-bottom: 20px;
-  
 }
 
 .question-count span {
@@ -183,16 +168,6 @@ button:focus {
   height: 10%; 
 }
 
-/* .timer-text {
-  background: rgb(230, 153, 12);
-  padding: 15px;
-  margin-top: 20px;
-  margin-right: 20px;
-  border: 5px solid rgb(255, 189, 67);
-  border-radius: 15px;
-  text-align: center;
-} */
-
 /* ANSWERS/RIGHT SECTION */
 .answer-section {
   width: 40%;
@@ -203,7 +178,6 @@ button:focus {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  /* justify-content: space-between; */
 }
 
 .correct {
@@ -213,6 +187,3 @@ button:focus {
 .incorrect {
   background-color: #ff3333;
 }
-
-
- 

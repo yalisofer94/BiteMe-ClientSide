@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
@@ -9,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios";
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import "./App.css";
 
 const useStyles = makeStyles({
     root: {
@@ -23,27 +22,15 @@ const useStyles = makeStyles({
       marginBottom: 12,
     },
   });
-  
-  // TODO THE CARD THING
-//   const sendChosenRestaurant = () => {
-//     Axios
-//         .post('')
-//         .then((response) => {console.log(response); res.json(response.data);})
-//         .catch(err => console.log(`Error is: ${err}`));
-// }
 
   export default function RestaurantCard({data, onDelete, onSelect}) {
-    console.log("The data",data);
     const address = data.formatted_address;
     const name = data.name;
     const hours = data.opening_hours.open_now;
     const id = data.place_id;
     const icon = data.icon;
-    console.log(id)
     const rating = data.rating;
     const [savedId, setId] = React.useState('');
-
-  
     const classes = useStyles();
 
     function handleSelect() {

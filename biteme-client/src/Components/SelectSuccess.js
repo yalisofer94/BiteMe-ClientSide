@@ -1,18 +1,15 @@
 import React , {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
-import "./App.css";
 import PersistentDrawerLeft from './Navbar';
 import {useHistory} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
+import "./App.css";
 
 class SelectSuccess extends Component {
   constructor(props){
     super(props);
-
     this.homeBtn = this.homeBtn.bind(this);
-
-
   }
 
   homeBtn = () => {

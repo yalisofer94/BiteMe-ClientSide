@@ -58,7 +58,7 @@ const GameForm = () => {
                 game: game
             },
             withCredentials: true,
-            url: "http://localhost:4000/api/send",
+            url: "http://localhost:4000/api/game",
         }).then((res) => {
             if (res.status === 200) {
                 window.location = '/home';
@@ -160,13 +160,13 @@ const GameForm = () => {
             <>
                 <div style={{ height: '400px', marginTop: '30%' }}>
                     <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                        <label style={{ fontSize: '20px' }}>Game Duration: </label>
+                        <label style={{color: 'white',   fontSize: '20px' }}>Game Duration: </label>
                         <form >
-                            <TextField container alignItems="center" justify="center" spacing={0} direction="column"
+                            <TextField container  alignItems="center" justify="center" spacing={0} direction="column"
                                 id="filled-number"
                                 label="minutes"
                                 type="number"
-                                style={{ width: '100%' }}
+                                style={{backgroundColor: 'white', width: '100%' }}
                                 onChange={(e) => num = e.target.value}
                                 inputProps={{ min: "5", max: "15", step: "1" }}
                                 InputLabelProps={{
@@ -191,20 +191,20 @@ const GameForm = () => {
             <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
-                        <label>Question {currentStep}: </label>
+                        <label style={{color: 'white', fontWeight: 'bold'}}>Question {currentStep}: </label>
                         <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
                         <div style={{ marginTop: '3%' }}>
-                            <label>Answer A: </label>
-                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
-                            <label>Answer B: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
-                            <label>Answer C: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
-                            <label>Answer D: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer A: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer B: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer C: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer D: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
-                            <InputLabel id="Gender">Answer{currentStep}</InputLabel>
+                        <FormControl style={{ backgroundColor: 'white', marginTop: '1%' }} component="fieldset">
+                            <InputLabel  id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
                                 id="Gender"
@@ -232,19 +232,19 @@ const GameForm = () => {
             <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
-                        <label>Question {currentStep}: </label>
+                        <label style={{color: 'white', fontWeight: 'bold'}}>Question {currentStep}: </label>
                         <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
                         <div style={{ marginTop: '3%' }}>
-                            <label>Answer A: </label>
-                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
-                            <label>Answer B: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
-                            <label>Answer C: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
-                            <label>Answer D: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer A: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer B: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer C: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer D: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                        <FormControl style={{backgroundColor: 'white', marginTop: '1%' }} component="fieldset">
                             <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
@@ -273,19 +273,19 @@ const GameForm = () => {
             <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
-                        <label>Question {currentStep}: </label>
+                        <label style={{color: 'white', fontWeight: 'bold'}}>Question {currentStep}: </label>
                         <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
                         <div style={{ marginTop: '3%' }}>
-                            <label>Answer A: </label>
-                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
-                            <label>Answer B: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
-                            <label>Answer C: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
-                            <label>Answer D: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer A: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer B: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer C: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer D: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                        <FormControl style={{backgroundColor: 'white', marginTop: '1%' }} component="fieldset">
                             <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
@@ -315,19 +315,19 @@ const GameForm = () => {
             <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
-                        <label>Question {currentStep}: </label>
+                        <label style={{color: 'white', fontWeight: 'bold'}}>Question {currentStep}: </label>
                         <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
                         <div style={{ marginTop: '3%' }}>
-                            <label>Answer A: </label>
-                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
-                            <label>Answer B: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
-                            <label>Answer C: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
-                            <label>Answer D: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer A: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer B: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer C: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer D: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                        <FormControl style={{backgroundColor: 'white', marginTop: '1%' }} component="fieldset">
                             <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
@@ -357,19 +357,19 @@ const GameForm = () => {
             <div style={{ height: '400px' }}>
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <form>
-                        <label>Question {currentStep}: </label>
+                        <label style={{color: 'white', fontWeight: 'bold'}}>Question {currentStep}: </label>
                         <TextField type="text" name='question1' onChange={(e) => quest = e.target.value} style={{ backgroundColor: 'white', width: '80%', height: '25px' }} placeholder="Highest building in the world.." />
                         <div style={{ marginTop: '3%' }}>
-                            <label>Answer A: </label>
-                            <TextField style={{ height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
-                            <label>Answer B: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
-                            <label>Answer C: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
-                            <label>Answer D: </label>
-                            <TextField style={{ height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer A: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} name='answer1' onChange={(e) => anst1 = e.target.value} placeholder="text" />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer B: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst2 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer C: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst3 = e.target.value} />
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Answer D: </label>
+                            <TextField style={{backgroundColor: 'white', height: '25px' }} placeholder="text" onChange={(e) => anst4 = e.target.value} />
                         </div>
-                        <FormControl style={{ marginTop: '1%' }} component="fieldset">
+                        <FormControl style={{backgroundColor: 'white', marginTop: '1%' }} component="fieldset">
                             <InputLabel id="Gender">Answer{currentStep}</InputLabel>
                             <Select
                                 labelId="Gender"
@@ -408,7 +408,7 @@ const GameForm = () => {
            <PersistentDrawerLeft admin={localStorage.isAdmin} username={localStorage.userName}/>
             <div className="home-content" >
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                    <h1>Add New Game</h1>
+                    <h1 style={{color: "white", paddingBottom:'2%', marginTop: '3%'}}>Add New Game</h1>
                     <form>
                         <Step0
                             currentStep={currentStep}

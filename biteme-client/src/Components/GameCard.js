@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import Axios from "axios";
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import "./App.css";
 
 
 const useStyles = makeStyles({
@@ -17,7 +16,7 @@ const useStyles = makeStyles({
       maxHeight: '40%',
     },
     title: {
-      fontSize: 14,
+      fontSize: 18,
     },
     pos: {
       marginBottom: 12,
@@ -32,25 +31,20 @@ const useStyles = makeStyles({
 //         .catch(err => console.log(`Error is: ${err}`));
 // }
 
-  export default function RestaurantCard({data, onDelete, onSelect}) {
-    console.log("The data",data);
-    // const address = data.formatted_address;
-    // const name = data.name;
-    // const hours = data.opening_hours.open_now;
-    // const id = data.place_id;
-    // const icon = data.icon;
-    // console.log(id)
-    // const rating = data.rating;
-    // const [savedId, setId] = React.useState('');
+  export default function GamesCard({data, onDelete}) {
+    // console.log("The data",data);
+    // console.log("this", data._id);
+    const gameId = data._id;
+    const id = data.id;
+    const question = data.game[0].question;
+
 
   
     const classes = useStyles();
 
-    // function handleSelect() {
-    //   onSelect(id)
-    // }
 
     function handleDelete() {
+      alert(`You just Deleted Game ${id}`);
       onDelete(id)
     }
     return(
@@ -58,12 +52,11 @@ const useStyles = makeStyles({
     <Card style={{marginTop: '3%',marginLeft:'1%', width:'250px', display:'inline-block', background: '#C7C1F3', borderRadius:'15px', border: '1px #001f3f solid'}}>
     <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-        Game ID: {address}
+        Game ID: {id}
         </Typography>
         <Typography variant="h5" component="h2">
-        Question:   {name}
+        Question:  {question}
         </Typography>
-        
      </CardContent>
      <CardActions style={{justifyContent:'center', alignContent:'center'}}>
         {/* <Button size="large" color="primary" onClick={handleSelect}>select</Button> */}

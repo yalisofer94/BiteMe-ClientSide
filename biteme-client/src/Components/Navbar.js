@@ -25,7 +25,6 @@ import Button from '@material-ui/core/Button';
 
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   
   root: {
@@ -63,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
@@ -94,7 +92,6 @@ export default function PersistentDrawerLeft(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-
 const randEmoji = () => {
     const emojis = ['🍔','🍕','🌶','🍩','🌭','🥨','🥦', '🍜', '🍿', '🥡','🍱','🍉','🍍','🥙','🍝' ];
     return `BiteMe ${emojis[Math.floor(Math.random() * (emojis.length - 1) + 1)]}`;
@@ -108,14 +105,12 @@ const randEmoji = () => {
     setOpen(false);
   };
 
-  
   const logout = () => {
     Axios({
       method: "GET",
       withCredentials: true,
       url: "http://localhost:4000/api/login/",
   }).then((res) => {
-      console.log(res);
       if(res.data === "logged out?"){
           localStorage.clear()
           window.location = '/';
@@ -125,14 +120,13 @@ const randEmoji = () => {
     }});
   }
   const addGamePath = () => {
-    // console.log(props.admin);
     history.push({pathname: '/addGame'});
   }
-  const updateGame = () => {
-    //Task to do 
+  const deleteGame = () => {
+    history.push({pathname: '/gamesView'});
   }
   const PlayGamePath = () => {
-    history.push('/game');
+    history.push({pathname: '/game'});
   }
 
   return (
@@ -155,13 +149,8 @@ const randEmoji = () => {
             <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap style={{ width: '100%'}}>
-            {/* <AppBar position="static"> */}
             <Toolbar 
             >
-            {/* <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu"> */}
-            {/* <MenuIcon/> */}
-            
-            {/* </IconButton> */}
             <Typography variant="h6" className={classes.title}>
                 {randEmoji()}
             </Typography>
@@ -170,7 +159,6 @@ const randEmoji = () => {
             </Typography>
             <Button style={{position: 'absolute', right: '0px'}} onClick = {logout} color="inherit">Logout</Button>
             </Toolbar>
-            {/* </AppBar> */}
         </Typography>
         </Toolbar>
         </AppBar>
@@ -190,22 +178,11 @@ const randEmoji = () => {
         </div>
         <Divider />
         <List>
-          {/* <Button><b><AddBox/>Create Game</b></Button> */}
-        {/* {['Create Game', 'Update Game', 'map'].map((text, index, page) => ( */}
-             {/* <ListItem button key={text}> */}
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon onClick={redirect=page}/> : <MailIcon />}</ListItemIcon> */}
-              {/* <ListItemText primary={text} /> */}
-             {/* </ListItem>  */}
         <MenuItem onClick={PlayGamePath}><GamesIcon/><ListItemText>Play Game</ListItemText></MenuItem> 
         { props.admin && <MenuItem onClick={addGamePath}><AddIcon/><ListItemText>Create Game</ListItemText></MenuItem> }
-        { props.admin && <MenuItem onClick={updateGame}><EditIcon/><ListItemText>Delete Game</ListItemText></MenuItem> }
-
-          {/* ) */}
-          {/* ) */}
-          {/* } */}
+        { props.admin && <MenuItem onClick={deleteGame}><EditIcon/><ListItemText>Delete Game</ListItemText></MenuItem> }
         </List>
         </Drawer>
-      
     </div>
   );
 }

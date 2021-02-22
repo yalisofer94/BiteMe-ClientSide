@@ -1,11 +1,6 @@
 import React, {Component, componentDidUpdate} from 'react';
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
-const mapStyles = {
-    // width: '100%',
-    // height: '500px'
-  };
-
 export class MapContainer extends Component {
     constructor(props){
       super(props)
@@ -13,13 +8,8 @@ export class MapContainer extends Component {
         lat: this.props.lat,
         lng: this.props.lng
       }
-      console.log(this.props.lat)
     }
-  //   componentDidUpdate(prevState) {
-      
-  //     this.forceUpdate()
-  //   console.log("Moved")
-  // }
+
     render() {
       return (
         <div style={{position:'relative', width:'100%', height:'600px'}}>

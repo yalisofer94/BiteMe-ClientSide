@@ -19,7 +19,7 @@ const CardsListing = ({
         <RestaurantsCard
           key={rest.place}
           data={rest}
-          onSelect={onSelect}
+          // onSelect={onSelect}
           onDelete={onDelete}
         />
       ))}

@@ -4,8 +4,8 @@ import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Axios from 'axios';
-import "./App.css";
 import {Button} from '@material-ui/core';
+import "./App.css";
 
 
 function Register (props) {
@@ -45,13 +45,13 @@ function Register (props) {
                             <div style={{width:'100%',display: 'block', textAlign: 'center'}}>
                             <form style={{ display: 'inline-block'}}>
                                 <div style={{marginBottom:'5%', width:'300px'}}>
-                                    <TextField id="outlined-basic" label="user" type="text" id="userLoginEmail" variant="outlined" onChange={(e) => setRegisterUsername(e.target.value)}/>
+                                    <TextField style={{background: "white"}}id="outlined-basic" label="user" type="text" id="userLoginEmail" variant="outlined" onChange={(e) => setRegisterUsername(e.target.value)}/>
                                 </div>
                                 <div style={{marginBottom:'5%'}}>
-                                    <TextField id="outlined-basic" label="Email" id="userLoginEmail" type="email" variant="outlined" onChange={(e) => setRegisterEmail(e.target.value)}/>
+                                    <TextField style={{background: "white"}} id="outlined-basic" label="Email" id="userLoginEmail" type="email" variant="outlined" onChange={(e) => setRegisterEmail(e.target.value)}/>
                                 </div>
                                 <div style={{marginBottom:'5%'}}>
-                                    <TextField id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined" onChange={(e) => setRegisterPassword(e.target.value)}/>
+                                    <TextField style={{background: "white"}} id="outlined-password-input" label="Password" id="userLoginPassword" type="password" autoComplete="current-password" variant="outlined" onChange={(e) => setRegisterPassword(e.target.value)}/>
                                 </div>
                                 <Button onClick={register} variant="contained" color="primary" style={{marginBottom:'5%'}} ><b>Register Now</b></Button>
                             </form>

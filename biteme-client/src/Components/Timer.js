@@ -5,8 +5,6 @@ import {useHistory} from "react-router-dom";
 import React from 'react';
 
 function MyTimer({ expiryTimestamp}) {
-  // const { history } = this.props;
-  
   const {
       seconds,
       minutes
@@ -18,7 +16,6 @@ function MyTimer({ expiryTimestamp}) {
           <span>{minutes}</span>:<span>{seconds}</span>
         </div>
       </div>
-
     );
   }
 

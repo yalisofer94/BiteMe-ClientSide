@@ -8,7 +8,6 @@ const App = () => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(0);
   const value = { userName , setUserName, userId, setUserId};
-  //const valueProvider = useMemo(() => ({userInfo, setUserInfo}) , [userInfo, setUserInfo]);
   
   return (
     <div>

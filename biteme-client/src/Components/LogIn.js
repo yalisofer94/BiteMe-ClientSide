@@ -11,9 +11,7 @@ import "./App.css";
 function Login() {
     const history = useHistory();
     const {userName, setUserName, userId, setUserId} = useContext(UserContext);
-    
-
-
+  
     React.useEffect(() => {
       const savedId = String(localStorage.getItem(userId) || '');
       const savedName = String (localStorage.getItem(userName) || '');
@@ -23,7 +21,6 @@ function Login() {
     
     useEffect(() => {
       if(userName !== '' && userId !== 0){
-        console.log("1",userName, userId);
         let path = '/home';
         history.push({
           pathname: path,
@@ -44,7 +41,6 @@ function Login() {
           }
         })
         const data = await res.json()
-        console.log(res.cookies, data);
         if(res.status === 200){
           if(data === "User don't exist"){
             window.location = '/register';  
@@ -64,8 +60,9 @@ function Login() {
             <div>
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>
+                            <div  style={{alignContent: 'center', justifyContent: 'center'}}>
                             <h1 style={{marginBottom:'25%', color:'#FDF8F5'}}>Login Your Account</h1>
-                            <div style={{marginTop:'0.5%'}}>    
+                            <div style={{marginLeft: "37%", marginTop:'0.5%',justifyContent: 'center'}}>    
                             <GoogleLogin
                             clientId='102550194646-3l50npk3904rspfubhe612nttft9nt36.apps.googleusercontent.com'
                             buttonText="Log in with Google"
@@ -73,6 +70,7 @@ function Login() {
                             onFailure={handleLogin}
                             cookiePolicy={'single_host_origin'}
                             />
+                            </div>
                             </div>
                             <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/register'>Want to <strong>Register?</strong></a>
                         </Grid>

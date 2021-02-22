@@ -14,16 +14,14 @@ const styles = theme => ({
     left: "0",
     bottom: "1",
     height: "18vh",
-    width: "100vw",
-    // marginTop: "10vh",
-
+    width: "100vw"
 }});
 
 class Footer extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div /* style={{position: 'relative', left:0, bottom:0, right:0}} */ className={classes.footer}>
+      <div className={classes.footer}>
         <Grid container className="bg-footer">
             <Grid item md={2}></Grid>
               <Grid item md={3}>

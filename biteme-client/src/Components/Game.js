@@ -4,11 +4,10 @@ import PersistentDrawerLeft from './Navbar';
 import MyTimer from "./Timer";
 import Axios from 'axios';
 import Grid from '@material-ui/core/Grid'
-import "./App.css";
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
 import {useHistory} from "react-router-dom";
-
+import "./App.css";
 
 export default function Game() {
   const history = useHistory();
@@ -49,11 +48,8 @@ export default function Game() {
               user_id: localStorage.userId,
               score: score,
             },
-      }).then((res)=> {
-          if(res.status === 200){
-            console.log("returned from the backend in game")
-          }
-      }).catch((err) => {console.log(err)})
+      }).then((res)=> {})
+      .catch((err) => {console.log(err)})
     }
   };
 
@@ -66,7 +62,6 @@ export default function Game() {
       history.push('/home');
     }
   }
-  
 
   return (
     <>
