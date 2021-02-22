@@ -21,7 +21,7 @@ class Home extends Component{
           lng: 34.7818 ,
           lat: 32.0853
         }
-        console.log("props received -",props.location.userName, props.location.userId, this.state.userid, this.state.admin);
+        console.log("props received -",localStorage.userName, localStorage.userId, localStorage.isAdmin);
       
         this.logout = this.logout.bind(this);
         this.sendRest = this.sendRest.bind(this);
@@ -70,7 +70,7 @@ class Home extends Component{
           withCredentials: false,
           url: `http://localhost:4000/api/order`,
               data: {
-                user_id: this.state.userid,
+                user_id: localStorage.userId,
                 restaurant_id: rest[0].place_id,
               },
         }).then((res)=> {

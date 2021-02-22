@@ -65,7 +65,6 @@ DONE! *Creating logic of groups -
         login logic in front
         when refreshing the page, the name of the person disappear -> DONE
         make map respond to the restaurants we found 
-        delete storage when logging out.
 
     back - 
         group logic
@@ -73,9 +72,7 @@ DONE! *Creating logic of groups -
 
 flow 1 -
     login as admin -> creating new game (admin options) -> form and confirmation
-    * how to know if the is admin - DONE
-    * add button for admin (maybe navbar)
-    * add edit option for the game
+    * add edit option for the game - including adding edit page
     * add confirmation that game was edited/deleted/add
     * if we have time - add option for videos/something cool
 

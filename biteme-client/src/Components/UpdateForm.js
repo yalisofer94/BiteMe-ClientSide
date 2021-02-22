@@ -414,7 +414,7 @@ const GameForm = () => {
             <Navbar/>
             <div className="home-content" >
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
-                    <h1>Add New Game</h1>
+                    <h1>Update Game</h1>
                     <form>
                         <Step0
                             currentStep={currentStep}
