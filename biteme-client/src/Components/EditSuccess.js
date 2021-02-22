@@ -6,13 +6,11 @@ import {useHistory} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
 
-class SelectSuccess extends Component {
+class EditSuccess extends Component {
   constructor(props){
     super(props);
 
     this.homeBtn = this.homeBtn.bind(this);
-
-
   }
 
   homeBtn = () => {
@@ -24,15 +22,12 @@ class SelectSuccess extends Component {
         <div className="component-emoji-results">
         <PersistentDrawerLeft admin={localStorage.isAdmin} username={localStorage.userName}/>
         <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>
-         <h1>We Got Your Request!</h1>
-         <span>
-          <h2>Results will receive shortly</h2>
+         <h1>The game Deleted successfully!</h1>
           <Button onClick={this.homeBtn} variant="contained"  style={{marginLeft: "40%", fontSize: "large", borderRadius: '15px'}}><HomeIcon/>Home</Button>
-         </span>
-         </Grid>
+        </Grid>
         </div>
       );
     }
   }
 
-  export default SelectSuccess;
+  export default EditSuccess;

@@ -1,69 +1,15 @@
     Task List:
 
-GENERAL:
-*When pressing on the logo -> check if the user is logged in. 
-    -> logged in = redirect to home page.
-    -> not logged in = redirect to login page.
-
-
-Login Page:
-DONE! *If the client does not exist, redirect to the register page and then back to the login(Don't create the cookie).
-
-
-
-Register Page:
-Not important for now *Adding is admin option when registering.
-*verifications in the registration inputs.
-
-
-Home Page:
-*When client logs in, they should see on the navbar part their name(maybe photo).
-    *They should transfer details on every page.
-
-
-*Make search return real information from google api 
-    -> then adds card of the restaurant to the page with option to choose it as his own restaurant 
-    -> choise will go into the DB and leave the client out of the page.
-
-(?) Add group page:
-*Adding user to the group from the DB.
 
 Backend:
 DONE! *Creating logic of groups -
     -Adding people to the group.
 *Creating logics of games - 
-    -gathering scores, then send emails with result.
-    -when people finishing to choose - if tie --> it should send email with game url. else --> it should send email with the winning restaurant.
-
-*order.ctrl - 
-    -addOrder does not get parameters. check why!!!
-
-
-
-    WORING JSON:
-
-       {
-         "id": 2,
-         "time": "2021-03-10",
-         "group_id": 1,
-         "game_id": 1,
-         "restaurants_id": 
-         [
-             "ChIJLyvwqPVLHRUR_M8_-Jipom8",
-             "ChIJLyvwqPVLHRUR_M8_-Jipom8",
-             "ChIJf61IVji0AhURbQtZBTekvLo",
-             "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
-             "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
-         ],
-         "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
-     } 
-
-
+    -gathering scores
 
      front - 
         view
         login logic in front
-        when refreshing the page, the name of the person disappear -> DONE
         make map respond to the restaurants we found 
 
     back - 
@@ -73,15 +19,16 @@ DONE! *Creating logic of groups -
 flow 1 -
     login as admin -> creating new game (admin options) -> form and confirmation
     * add edit option for the game - including adding edit page
-    * add confirmation that game was edited/deleted/add
-    * if we have time - add option for videos/something cool
 
 flow 2 - 
     login as user -> choose what to eat -> confirmation
-    * --maybe-- add image from google the restaurant to the card.
 
 flow 3 -
     receiving mail about game-> play game -> open page with what restaurant won
-    * logic to run game - where score is kept, 
-    * make the game be a link that will be send
-    * make sure the game work only in the destinated time.
+
+
+Finish flow 1 - add delete and view.
+Do Figma
+Do Postman
+To deploy to netfly
+To deploy to heroku

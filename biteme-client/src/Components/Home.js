@@ -73,6 +73,7 @@ class Home extends Component{
                 user_id: localStorage.userId,
                 restaurant_id: rest[0].place_id,
                 restaurant_name: rest[0].name,
+                // restaurant_icon: rest[0].icon,
               },
         }).then((res)=> {
             const { history } = this.props;
@@ -87,7 +88,7 @@ class Home extends Component{
               alert("The order successfully added! You are hungry for sure, you are the first person in the team to order!🍽🍴")
               if(history) history.push('/selectSuccess');
         }).catch((err) => {
-
+            console.log(err);
         })
       } else {
         console.log("Issue occurred while trying to send the selected restaurant!");
@@ -102,7 +103,6 @@ class Home extends Component{
         url: `http://localhost:4000/api/restaurantAPI?restName=${this.state.inputField}` //`https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${this.state.inputField}`,
     }).then((res) => {
         if(res.status === 200 && res.data.candidates[0].opening_hours.open_now !== null){
-            console.log("The datda is - ",(res.data));
             const lat = res.data.candidates[0].geometry.location.lat;
             const lng = res.data.candidates[0].geometry.location.lng;
             console.log(lat,lng)
@@ -112,12 +112,12 @@ class Home extends Component{
           })
             let myArr= [...this.state.rests_data]
               myArr.push(res.data.candidates[0])
-              console.log(myArr);
+              console.log('rests_data',myArr);
               this.setState({
                 rests_data: myArr
             })
             //this.setState({ rests_data: [...this.state.rests_data, res.data.candidates[0]] });
-            console.log(this.state.rests_data);
+            console.log('restss',this.state.rests_data);
         }
         else{ 
             alert("Something wrong happened! \nStatus - ", res.status);
@@ -145,12 +145,12 @@ class Home extends Component{
               <Grid item xl={8}>
               {/* {admin ? <h1>Admin</h1> : <h1>NotAdmin</h1>} */}
 
-                <h1 style={{marginTop: '5%', color:'MintCream'}}><strong>FULFILL YOUR DESIRE</strong></h1>
+                <h1 style={{marginTop: '5%', color:'#FDF8F5'}}><strong>FULFILL YOUR DESIRE</strong></h1>
                   <Grid>
                     <form style={{justifyContent: 'center', textAlign: 'center'}}> 
                       <input type="text" style={{backgroundColor:'white', width: '70%', height: '40px', marginTop: '3%', borderRadius:'15px', paddingLeft: '2%'}} onChange={this.handleChange}  placeholder="  Enter restaurant..." />
-                      <Button variant="contained" onClick={this.sendRest} color="primary" style={{width:'10%', height:'40px', marginLeft: '0.9%', borderRadius:'15px'}}><b>Search</b></Button>
-                      {this.state.rests_data.length === 0 && (<h2 style={{ paddingTop: 10, textAlign: 'center' }}>No Restaurants to show</h2>)} 
+                      <Button onClick={this.sendRest} variant="contained" color="primary" style={{width:'10%', height:'40px', marginLeft: '0.9%', borderRadius:'15px'}}><b>Search</b></Button>
+                      {this.state.rests_data.length === 0 && (<h2 style={{ paddingTop: 10, textAlign: 'center', color: '#FDF8F5' }}>No Restaurants to show</h2>)} 
                       <CardsListing rests={this.state.rests_data} onDelete={this.handleDeleteClick} onSelect={this.handleSelectClick}/>
                     </form>
                   </Grid>

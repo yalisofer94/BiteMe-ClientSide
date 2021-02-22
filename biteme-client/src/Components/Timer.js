@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import {useTimer} from 'react-timer-hook';
 import { duration } from '@material-ui/core';
+import {useHistory} from "react-router-dom";
+import React from 'react';
 
 function MyTimer({ expiryTimestamp}) {
-    const {
+  // const { history } = this.props;
+  
+  const {
       seconds,
       minutes
     } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
@@ -14,6 +18,7 @@ function MyTimer({ expiryTimestamp}) {
           <span>{minutes}</span>:<span>{seconds}</span>
         </div>
       </div>
+
     );
   }
 
@@ -22,7 +27,8 @@ function MyTimer({ expiryTimestamp}) {
     time.setSeconds(time.getSeconds() + (!duration ? 60: (60 * duration)));
     return (
       <div>
-        <MyTimer expiryTimestamp={time} />
+        <MyTimer  expiryTimestamp={time} />
       </div>
     );
   }
+

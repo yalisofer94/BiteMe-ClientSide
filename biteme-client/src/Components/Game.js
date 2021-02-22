@@ -1,16 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState, useEffect } from 'react';
-import Footer from './Footer';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Logo from './Logo';
-import Axios from 'axios';
-import Navbar from './Navbar';
-import "./App.css";
+import PersistentDrawerLeft from './Navbar';
 import MyTimer from "./Timer";
+import Axios from 'axios';
+import Grid from '@material-ui/core/Grid'
+import "./App.css";
+import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
+import {useHistory} from "react-router-dom";
+
 
 export default function Game() {
-
+  const history = useHistory();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
@@ -19,14 +20,14 @@ export default function Game() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    async function callApi() {
+    async function bringGame() {
       const res = await Axios.get(`http://localhost:4000/api/game/`);
       const games = res?.data?.game;
       setDuration(res?.data?.duration);
       setDatas(games);
-      setLoading(false);
+      setLoading(false); 
     }
-    callApi();
+    bringGame();
   }, []);
 
   const handleAnswerOptionClick = (isCorrect) => {
@@ -39,23 +40,52 @@ export default function Game() {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
+      // sending game score + userId to backend
+      Axios({
+        method: "POST",
+        withCredentials: false,
+        url: `http://localhost:4000/api/order/userScores`,
+            data: {
+              user_id: localStorage.userId,
+              score: score,
+            },
+      }).then((res)=> {
+          if(res.status === 200){
+            console.log("returned from the backend in game")
+          }
+      }).catch((err) => {console.log(err)})
     }
   };
 
+  const Home = () => {
+    history.push('/home');
+  };
+
+  const timeLeft = () =>{
+    if(duration == 0){
+      history.push('/home');
+    }
+  }
+  
+
   return (
     <>
-      {!duration ? <h2>Loading</h2> :
+      {!duration ? <h2 style={{textAlign: 'center', fontSize: '50px'}}>Loading</h2> :
         <>
-        <Navbar />
-            <h2 style={{ textAlign: 'center', fontSize: '70px'}}>Time left<MyTimer duration={duration} /></h2>
+          <PersistentDrawerLeft admin={localStorage.isAdmin} username={localStorage.userName}/>
+          <div style={{background: '#bdeaee'}}>
+            <h2 style={{ textAlign: 'center', fontSize: '70px'}}>Time left<MyTimer onChange={duration} duration={duration} /></h2>
+            <div className="game-pic">
+            <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>                        
             <div className='app'>
               {loading ? <h2>Loading</h2> :
-                <div style={{ width: '600px', marginBottom: '3%'}}>
+                <div style={{textAlign: 'center', fontSize: '20px', width: '600px', marginBottom: '3%'}}>
                   {showScore ? (
                     <div className='score-section'>
                       You scored {score} out of {datas.length}
+                      <Button variant="contained" onClick={Home} style={{marginLeft: "40%", fontSize: "large", borderRadius: '15px'}}><HomeIcon/>Home</Button>
                     </div>
-                  ) : (
+                      ) : (
                       <>
                           <div className='question-section'>
                             <div className='question-count'>
@@ -65,14 +95,19 @@ export default function Game() {
                           </div>
                           <div className='answer-section'>
                             {datas[currentQuestion].options.map((option, i) => (
-                              <button className='ans_button' key={i} onClick={() => handleAnswerOptionClick(option.isCorrect)}>{option.answer}</button>
+                            <button className='ans_button' key={i} onClick={() => handleAnswerOptionClick(option.isCorrect)}>{option.answer}</button>
                             ))}
                           </div>
                       </>
-                    )}</div>
+                    )}
+                </div>
               }
             </div>
-        </>}
+          </Grid>
+          </div>
+        </div>
+      </>
+      }
     </>
   );
 }

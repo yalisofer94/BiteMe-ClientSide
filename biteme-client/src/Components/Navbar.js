@@ -20,19 +20,8 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import {useHistory} from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
-
 import Axios from "axios";
-
-// import React , { useContext } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import Axios from "axios";
-// import UserContext from '../UserContext';
 
 
 const drawerWidth = 240;
@@ -209,7 +198,7 @@ const randEmoji = () => {
              {/* </ListItem>  */}
         <MenuItem onClick={PlayGamePath}><GamesIcon/><ListItemText>Play Game</ListItemText></MenuItem> 
         { props.admin && <MenuItem onClick={addGamePath}><AddIcon/><ListItemText>Create Game</ListItemText></MenuItem> }
-        { props.admin && <MenuItem onClick={updateGame}><EditIcon/><ListItemText>Edit Game</ListItemText></MenuItem> }
+        { props.admin && <MenuItem onClick={updateGame}><EditIcon/><ListItemText>Delete Game</ListItemText></MenuItem> }
 
           {/* ) */}
           {/* ) */}

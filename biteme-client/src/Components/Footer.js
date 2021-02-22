@@ -10,13 +10,14 @@ const styles = theme => ({
   footer: {
     backgroundColor: "#8CD1F6",
     color: "white",
-    position: "fixed",
+    position: "absolute",
     left: "0",
-    bottom: "10",
+    bottom: "1",
     height: "18vh",
-    width: "100vw"
-  }
-});
+    width: "100vw",
+    // marginTop: "10vh",
+
+}});
 
 class Footer extends Component {
   render() {

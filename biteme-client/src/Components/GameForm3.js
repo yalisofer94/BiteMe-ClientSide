@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import Footer from './Footer';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Logo from './Logo';
 import Axios from "axios";
-import Navbar from './Navbar';
+import PersistentDrawerLeft from './Navbar';
 import "./App.css";
 
 const GameForm = () => {
@@ -411,7 +405,7 @@ const GameForm = () => {
     }
     return (
         <>
-            <Navbar/>
+           <PersistentDrawerLeft admin={localStorage.isAdmin} username={localStorage.userName}/>
             <div className="home-content" >
                 <Grid container alignItems="center" justify="center" spacing={0} direction="column">
                     <h1>Add New Game</h1>

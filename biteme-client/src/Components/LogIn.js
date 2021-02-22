@@ -64,7 +64,7 @@ function Login() {
             <div>
                     <div className="home-content">
                         <Grid container alignItems="center" justify="center" spacing={0} direction="column" style={{height:'100%'}}>
-                            <h1 style={{marginBottom:'5%'}}>Login Your Account</h1>
+                            <h1 style={{marginBottom:'25%', color:'#FDF8F5'}}>Login Your Account</h1>
                             <div style={{marginTop:'0.5%'}}>    
                             <GoogleLogin
                             clientId='102550194646-3l50npk3904rspfubhe612nttft9nt36.apps.googleusercontent.com'
