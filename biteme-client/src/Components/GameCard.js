@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import "./App.css";
 
-
 const useStyles = makeStyles({
     root: {
       minWidth: '30px',
@@ -22,18 +21,8 @@ const useStyles = makeStyles({
       marginBottom: 12,
     },
   });
-  
-  // TODO THE CARD THING
-//   const sendChosenRestaurant = () => {
-//     Axios
-//         .post('')
-//         .then((response) => {console.log(response); res.json(response.data);})
-//         .catch(err => console.log(`Error is: ${err}`));
-// }
 
   export default function GamesCard({data, onDelete}) {
-    // console.log("The data",data);
-    // console.log("this", data._id);
     const gameId = data._id;
     const id = data.id;
     const question = data.game[0].question;

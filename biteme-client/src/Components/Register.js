@@ -25,7 +25,7 @@ function Register (props) {
             password: registerPassword,
             },
             withCredentials: true,
-            url: "http://localhost:4000/api/user/register",
+            url: "https://bite-me-app1.herokuapp.com/api/user/register",
         }).then((res) => {
             if(res.data.msg === "User Already Exists"){
                 window.location = '/';

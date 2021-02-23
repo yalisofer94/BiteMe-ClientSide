@@ -109,7 +109,7 @@ const randEmoji = () => {
     Axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:4000/api/login/",
+      url: "https://bite-me-app1.herokuapp.com/api/login/",
   }).then((res) => {
       if(res.data === "logged out?"){
           localStorage.clear()

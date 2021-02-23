@@ -14,24 +14,25 @@ class GamesListing extends React.Component{
     constructor(props){
         super(props);
         this.state = { 
-           games: []
+           games: [],
+           loading: false
         }
-
-        this.onDelete = this.onDelete.bind(this);
-        
+        this.onDelete = this.onDelete.bind(this);  
     }
 
     componentDidMount(){
+            this.setState({loading:true})
             Axios({
                 method: "GET",
                 withCredentials: true,
-                url: "http://localhost:4000/api/game/all",
+                url: "https://bite-me-app1.herokuapp.com/api/game/all",
             }).then((res) => {
                 if (res.status === 200) {
                     console.log(res.data[0].game)
                     let theArr = [...res.data]
                     this.setState(prevState => ({
-                      games: theArr
+                      games: theArr,
+                      loading:false
                     }))
                 }
             }).catch(err => console.log(err)); 
@@ -42,7 +43,7 @@ class GamesListing extends React.Component{
         Axios({
             method: "DELETE",
             withCredentials: true,
-            url: `http://localhost:4000/api/game/${id}`,
+            url: `https://bite-me-app1.herokuapp.com/api/game/${id}`,
         }).then((res) => {
             if (res.status === 200) {
                 console.log(res.data)
@@ -60,17 +61,17 @@ class GamesListing extends React.Component{
     return (
       <>
     <PersistentDrawerLeft admin={localStorage.isAdmin} username={localStorage.userName}/>
+    {this.state.loading ? <h2>Loading</h2> :
     <div className="home-content">
       {this.state.games.map((game) => (
         <GamesCard
           key={game}
           data={game}
-          // onSelect={onSelect}
           onDelete={this.onDelete}
         />
       ))
       }
-    </div>
+    </div>}
     </>
   )}
 };

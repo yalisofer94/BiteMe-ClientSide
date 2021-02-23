@@ -31,7 +31,7 @@ class Home extends Component{
       Axios({
         method: "GET",
         withCredentials: true,
-        url: "http://localhost:4000/api/user/logout",
+        url: "https://bite-me-app1.herokuapp.com/api/user/logout",
     }).then((res) => {
         if(res.data.msg === "User logged-out"){
             window.location = '/login';
@@ -61,7 +61,7 @@ class Home extends Component{
         Axios({
           method: "POST",
           withCredentials: false,
-          url: `http://localhost:4000/api/order`,
+          url: `https://bite-me-app1.herokuapp.com/api/order`,
               data: {
                 user_id: localStorage.userId,
                 restaurant_id: rest[0].place_id,
@@ -92,7 +92,7 @@ class Home extends Component{
       Axios({
         method: "GET",
         withCredentials: false,
-        url: `http://localhost:4000/api/restaurantAPI?restName=${this.state.inputField}` //`https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${this.state.inputField}`,
+        url: `https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${this.state.inputField}` //`https://bite-me-app1.herokuapp.com/api/restaurantAPI?restName=${this.state.inputField}`,
     }).then((res) => {
         if(res.status === 200 && res.data.candidates[0].opening_hours.open_now !== null){
             const lat = res.data.candidates[0].geometry.location.lat;
