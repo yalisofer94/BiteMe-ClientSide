@@ -25,7 +25,7 @@ class GamesListing extends React.Component{
             Axios({
                 method: "GET",
                 withCredentials: true,
-                url: "http://localhost:4000/api/game/all",
+                url: "https://bite-me-app1.herokuapp.com/api/game/all",
             }).then((res) => {
                 if (res.status === 200) {
                     console.log(res.data[0].game)
@@ -42,7 +42,7 @@ class GamesListing extends React.Component{
         Axios({
             method: "DELETE",
             withCredentials: true,
-            url: `http://localhost:4000/api/game/${id}`,
+            url: `https://bite-me-app1.herokuapp.com/api/game/${id}`,
         }).then((res) => {
             if (res.status === 200) {
                 console.log(res.data)

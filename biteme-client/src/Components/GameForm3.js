@@ -58,7 +58,7 @@ const GameForm = () => {
                 game: game
             },
             withCredentials: true,
-            url: "http://localhost:4000/api/game",
+            url: "https://bite-me-app1.herokuapp.com/api/game",
         }).then((res) => {
             if (res.status === 200) {
                 window.location = '/home';

@@ -20,7 +20,7 @@ export default function Game() {
 
   useEffect(() => {
     async function bringGame() {
-      const res = await Axios.get(`http://localhost:4000/api/game/`);
+      const res = await Axios.get(`https://bite-me-app1.herokuapp.com/api/game/`);
       const games = res?.data?.game;
       setDuration(res?.data?.duration);
       setDatas(games);
@@ -43,7 +43,7 @@ export default function Game() {
       Axios({
         method: "POST",
         withCredentials: false,
-        url: `http://localhost:4000/api/order/userScores`,
+        url: `https://bite-me-app1.herokuapp.com/api/order/userScores`,
             data: {
               user_id: localStorage.userId,
               score: score,
@@ -54,14 +54,10 @@ export default function Game() {
   };
 
   const Home = () => {
-    history.push('/home');
+    // history.push('/home');
+    if(history) history.push('/home');
   };
 
-  const timeLeft = () =>{
-    if(duration == 0){
-      history.push('/home');
-    }
-  }
 
   return (
     <>

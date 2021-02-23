@@ -30,7 +30,7 @@ function Login() {
       }}, [userName, userId]);
 
       const handleLogin = async googleData => {
-        const res = await fetch("http://localhost:4000/api/login", {
+        const res = await fetch("https://bite-me-app1.herokuapp.com/api/login", {
             method: "POST",
             body: JSON.stringify({
             token: googleData.tokenId,
@@ -43,7 +43,9 @@ function Login() {
         const data = await res.json()
         if(res.status === 200){
           if(data === "User don't exist"){
-            window.location = '/register';  
+            history.push({
+              pathname: '/register'
+            });
           } else {
             setUserName(data.username);
             setUserId(data.id);
