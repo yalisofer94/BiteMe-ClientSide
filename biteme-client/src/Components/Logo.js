@@ -9,17 +9,19 @@ class Logo extends Component {
     this.onclicking = this.onclicking.bind(this);
   }
   
-    onclicking = () => {
-      const { history } = this.props;
-      if(history) history.push('/home');
-    }  
+    // onclicking = () => {
+    //   const { history } = this.props;
+    //   if(history) history.push('/home');
+    // }  
     render() {
       return (
           <>
           <div style={{display:'inline-block',justifyContent: 'left', marginLeft: '8%'}}>
-            <a onClick={this.onclicking}>
-            <img src={logo} alt="Logo"/>
-            </a>
+            {/* <a onClick={this.onclicking}> */}
+            <NavLink to='/home'>
+              <img src={logo} alt="Logo"/>
+            </NavLink>
+            {/* </a> */}
           </div>
           <div style={{display:'inline-block', justifyContent: 'right' }}>
           </div>

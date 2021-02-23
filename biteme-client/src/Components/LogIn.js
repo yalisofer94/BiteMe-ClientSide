@@ -6,6 +6,8 @@ import Axios from "axios";
 import GoogleLogin from 'react-google-login';
 import UserContext from '../UserContext';
 import {useHistory} from "react-router-dom";
+import NavLink from '@material-ui/core/NavLink';
+import Button from '@material-ui/core/Button';
 import "./App.css";
 
 function Login() {
@@ -74,7 +76,10 @@ function Login() {
                             />
                             </div>
                             </div>
-                            <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}href='/register'>Want to <strong>Register?</strong></a>
+                            <NavLink to='/register'>
+                              <Button>register</Button>
+                              {/* <a style={{marginTop:'1%', color:'black', fontSize:'15px'}}>Want to <strong>Register?</strong></a> */}
+                            </NavLink>
                         </Grid>
                     </div>
             </div>    
