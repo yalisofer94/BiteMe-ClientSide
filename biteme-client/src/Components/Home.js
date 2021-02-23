@@ -139,7 +139,7 @@ class Home extends Component{
             </Grid>
             </div>
           <MapContainer lat={this.state.lat} lng={this.state.lng}/>
-              <Grid style={{backgroundImage: `url('./../Images/background3\ copy.jpg')`, paddingTop:'0.3%'}}>
+              <Grid style={{paddingTop:'0.3%'}}>
               <h1 style={{justifyContent: 'center', textAlign: 'center'}}>LET THE FUN BEGIN</h1>
               </Grid>
           </>

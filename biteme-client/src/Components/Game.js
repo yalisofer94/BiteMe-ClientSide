@@ -54,14 +54,10 @@ export default function Game() {
   };
 
   const Home = () => {
-    history.push('/home');
+    // history.push('/home');
+    if(history) history.push('/home');
   };
 
-  const timeLeft = () =>{
-    if(duration == 0){
-      history.push('/home');
-    }
-  }
 
   return (
     <>
