@@ -54,7 +54,8 @@ export default function Game() {
   };
 
   const Home = () => {
-    history.push('/home');
+    // history.push('/home');
+    if(history) history.push('/home');
   };
 
   return (

@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
 import "./App.css";
 
+
 class SelectSuccess extends Component {
   constructor(props){
     super(props);
@@ -13,7 +14,8 @@ class SelectSuccess extends Component {
   }
 
   homeBtn = () => {
-    window.location = '/home';
+    const { history } = this.props;
+    if(history) history.push('/home');
   }
 
     render() {

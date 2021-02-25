@@ -12,7 +12,8 @@ class DeleteSuccess extends Component {
   }
 
   homeBtn = () => {
-    window.location = '/home';
+    const { history } = this.props;
+    if(history) history.push('/home');
   }
 
     render() {
