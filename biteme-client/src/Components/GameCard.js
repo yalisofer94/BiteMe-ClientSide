@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,14 +22,9 @@ const useStyles = makeStyles({
   });
 
   export default function GamesCard({data, onDelete}) {
-    const gameId = data._id;
     const id = data.id;
     const question = data.game[0].question;
-
-
-  
     const classes = useStyles();
-
 
     function handleDelete() {
       alert(`You just Deleted Game ${id}`);
@@ -48,7 +42,6 @@ const useStyles = makeStyles({
         </Typography>
      </CardContent>
      <CardActions style={{justifyContent:'center', alignContent:'center'}}>
-        {/* <Button size="large" color="primary" onClick={handleSelect}>select</Button> */}
         <IconButton aria-label="delete" onClick={handleDelete}>
           <DeleteIcon fontSize="small" />
         </IconButton>

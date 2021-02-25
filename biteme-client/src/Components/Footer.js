@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import "./App.css";
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/styles';
+import "./App.css";
 
 const styles = theme => ({
   footer: {

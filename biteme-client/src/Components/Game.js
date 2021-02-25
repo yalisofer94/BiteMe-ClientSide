@@ -57,12 +57,6 @@ export default function Game() {
     history.push('/home');
   };
 
-  const timeLeft = () =>{
-    if(duration == 0){
-      history.push('/home');
-    }
-  }
-
   return (
     <>
       {!duration ? <h2 style={{textAlign: 'center', fontSize: '50px'}}>Loading</h2> :
