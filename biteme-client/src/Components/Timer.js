@@ -1,7 +1,4 @@
-import { useState, useEffect } from 'react';
 import {useTimer} from 'react-timer-hook';
-import { duration } from '@material-ui/core';
-import {useHistory} from "react-router-dom";
 import React from 'react';
 
 function MyTimer({ expiryTimestamp}) {

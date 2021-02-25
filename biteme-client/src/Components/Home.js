@@ -1,4 +1,4 @@
-import React, { Component, useContext , componentDidMount} from "react";
+import React, { Component } from "react";
 import MapContainer from './Map';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -115,7 +115,7 @@ class Home extends Component{
       alert(`You've entered a bad restaurant name, '${this.state.inputField}' does not exist 😖, try again!`);
     });
     }else {
-      alert("The maximum number of restaurants are 4! 😇");
+      alert("The maximum number of restaurants is 4! 😇");
     }}
 
       render() {

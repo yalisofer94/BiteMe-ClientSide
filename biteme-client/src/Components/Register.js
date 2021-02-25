@@ -1,6 +1,4 @@
 import React ,{ useState} from 'react';
-import Footer from './Footer';
-import Logo from './Logo';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Axios from 'axios';

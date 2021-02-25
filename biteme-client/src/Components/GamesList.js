@@ -1,14 +1,7 @@
-import React ,{componentDidMount}from 'react';
+import React from 'react';
 import GamesCard from './GameCard';
 import PersistentDrawerLeft from './Navbar';
 import Axios from "axios";
-
-const cardStyle = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
-    maxWidth: "900px",
-    margin: 'auto'
-  }
 
 class GamesListing extends React.Component{
     constructor(props){

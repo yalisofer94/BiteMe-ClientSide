@@ -58,7 +58,6 @@ export default function Game() {
     if(history) history.push('/home');
   };
 
-
   return (
     <>
       {!duration ? <h2 style={{textAlign: 'center', fontSize: '50px'}}>Loading</h2> :
